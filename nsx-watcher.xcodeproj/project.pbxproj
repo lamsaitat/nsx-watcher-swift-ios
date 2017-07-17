@@ -14,9 +14,12 @@
 		6DD204641F1C41C400E67728 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204631F1C41C400E67728 /* Assets.xcassets */; };
 		6DD204671F1C41C400E67728 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */; };
 		6DD2046F1F1C41FC00E67728 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2046E1F1C41FC00E67728 /* README.md */; };
+		D6A1A70693462DCE9D3CFB4D /* Pods_nsx_watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20A1F75D69BE86767CDFF1B9 /* Pods-nsx-watcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.release.xcconfig"; sourceTree = "<group>"; };
+		4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD204561F1C41C400E67728 /* nsx-watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nsx-watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD204591F1C41C400E67728 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD2045B1F1C41C400E67728 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		6DD204661F1C41C400E67728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DD204681F1C41C400E67728 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD2046E1F1C41FC00E67728 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		754C7EF30D38FEABDA263735 /* Pods-nsx-watcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,18 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A1A70693462DCE9D3CFB4D /* Pods_nsx_watcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23B5055916590F4117B88E4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		550AD4C50EB6F5C9176EE7F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				754C7EF30D38FEABDA263735 /* Pods-nsx-watcher.debug.xcconfig */,
+				20A1F75D69BE86767CDFF1B9 /* Pods-nsx-watcher.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6DD2044D1F1C41C400E67728 = {
 			isa = PBXGroup;
 			children = (
 				6DD204581F1C41C400E67728 /* nsx-watcher */,
 				6DD204571F1C41C400E67728 /* Products */,
 				6DD2046E1F1C41FC00E67728 /* README.md */,
+				550AD4C50EB6F5C9176EE7F5 /* Pods */,
+				23B5055916590F4117B88E4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DD2046B1F1C41C400E67728 /* Build configuration list for PBXNativeTarget "nsx-watcher" */;
 			buildPhases = (
+				8F56CB91DC987A8718A0B2E2 /* [CP] Check Pods Manifest.lock */,
 				6DD204521F1C41C400E67728 /* Sources */,
 				6DD204531F1C41C400E67728 /* Frameworks */,
 				6DD204541F1C41C400E67728 /* Resources */,
+				B554AC286DFB1E6AF9F63E27 /* [CP] Embed Pods Frameworks */,
+				E0037E3955F96CC11D6A585D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,6 +164,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F56CB91DC987A8718A0B2E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B554AC286DFB1E6AF9F63E27 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0037E3955F96CC11D6A585D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6DD204521F1C41C400E67728 /* Sources */ = {
@@ -269,6 +344,7 @@
 		};
 		6DD2046C1F1C41C400E67728 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 754C7EF30D38FEABDA263735 /* Pods-nsx-watcher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7P57HRXX2;
@@ -282,6 +358,7 @@
 		};
 		6DD2046D1F1C41C400E67728 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A1F75D69BE86767CDFF1B9 /* Pods-nsx-watcher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7P57HRXX2;
