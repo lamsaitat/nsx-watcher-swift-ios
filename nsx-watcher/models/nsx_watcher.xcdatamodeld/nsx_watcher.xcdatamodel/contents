@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NSXEntry" representedClassName=".NSXEntry" syncable="YES">
+        <attribute name="auctionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="auctionLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="auctionPriceString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="carId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="detailPageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displacement" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradeString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mileage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transmission" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="NSXEntry" positionX="-63" positionY="-18" width="128" height="240"/>
+    </elements>
+</model>

@@ -7,4 +7,5 @@ target 'nsx-watcher' do
 
   # Pods for nsx-watcher
   pod 'AFNetworking', '~> 3.1.0'
+  pod 'HTMLKit', '~> 2.0'
 end

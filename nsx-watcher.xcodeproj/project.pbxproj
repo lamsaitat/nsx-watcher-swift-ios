@@ -10,10 +10,10 @@
 		6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD204591F1C41C400E67728 /* AppDelegate.swift */; };
 		6DD2045C1F1C41C400E67728 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2045B1F1C41C400E67728 /* ViewController.swift */; };
 		6DD2045F1F1C41C400E67728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2045D1F1C41C400E67728 /* Main.storyboard */; };
-		6DD204621F1C41C400E67728 /* nsx_watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DD204601F1C41C400E67728 /* nsx_watcher.xcdatamodeld */; };
 		6DD204641F1C41C400E67728 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204631F1C41C400E67728 /* Assets.xcassets */; };
 		6DD204671F1C41C400E67728 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */; };
-		6DD2046F1F1C41FC00E67728 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2046E1F1C41FC00E67728 /* README.md */; };
+		6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */; };
+		6DDED52B1F1C7BED00200FBB /* nsx_watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5271F1C7BED00200FBB /* nsx_watcher.xcdatamodeld */; };
 		D6A1A70693462DCE9D3CFB4D /* Pods_nsx_watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,11 +24,13 @@
 		6DD204591F1C41C400E67728 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD2045B1F1C41C400E67728 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6DD2045E1F1C41C400E67728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6DD204611F1C41C400E67728 /* nsx_watcher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = nsx_watcher.xcdatamodel; sourceTree = "<group>"; };
 		6DD204631F1C41C400E67728 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DD204661F1C41C400E67728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DD204681F1C41C400E67728 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD2046E1F1C41FC00E67728 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatcherAPI.swift; sourceTree = "<group>"; };
+		6DDED5251F1C52B200200FBB /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		6DDED5281F1C7BED00200FBB /* nsx_watcher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = nsx_watcher.xcdatamodel; sourceTree = "<group>"; };
 		754C7EF30D38FEABDA263735 /* Pods-nsx-watcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,9 +91,19 @@
 				6DD204631F1C41C400E67728 /* Assets.xcassets */,
 				6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */,
 				6DD204681F1C41C400E67728 /* Info.plist */,
-				6DD204601F1C41C400E67728 /* nsx_watcher.xcdatamodeld */,
+				6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */,
+				6DDED5251F1C52B200200FBB /* BridgingHeader.h */,
+				6DDED5261F1C7BED00200FBB /* models */,
 			);
 			path = "nsx-watcher";
+			sourceTree = "<group>";
+		};
+		6DDED5261F1C7BED00200FBB /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6DDED5271F1C7BED00200FBB /* nsx_watcher.xcdatamodeld */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,9 +230,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */,
 				6DD2045C1F1C41C400E67728 /* ViewController.swift in Sources */,
-				6DD204621F1C41C400E67728 /* nsx_watcher.xcdatamodeld in Sources */,
-				6DD2046F1F1C41FC00E67728 /* README.md in Sources */,
+				6DDED52B1F1C7BED00200FBB /* nsx_watcher.xcdatamodeld in Sources */,
 				6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +364,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -366,6 +379,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -394,12 +408,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6DD204601F1C41C400E67728 /* nsx_watcher.xcdatamodeld */ = {
+		6DDED5271F1C7BED00200FBB /* nsx_watcher.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6DD204611F1C41C400E67728 /* nsx_watcher.xcdatamodel */,
+				6DDED5281F1C7BED00200FBB /* nsx_watcher.xcdatamodel */,
 			);
-			currentVersion = 6DD204611F1C41C400E67728 /* nsx_watcher.xcdatamodel */;
+			currentVersion = 6DDED5281F1C7BED00200FBB /* nsx_watcher.xcdatamodel */;
 			path = nsx_watcher.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

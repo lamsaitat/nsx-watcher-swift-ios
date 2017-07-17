@@ -14,13 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - HTMLKit (2.0.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - HTMLKit (~> 2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HTMLKit: 9e1bde384fbc20be51eb62f2c1ad331d6ceccfa2
 
-PODFILE CHECKSUM: 7de6f5fde5ff8a48fdb47a9b567d4074f61649c4
+PODFILE CHECKSUM: 8d6570375a2defec49b262095608bfb1a7f9c53e
 
 COCOAPODS: 1.2.1
