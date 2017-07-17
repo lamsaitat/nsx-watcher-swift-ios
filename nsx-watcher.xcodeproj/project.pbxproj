@@ -14,6 +14,9 @@
 		6DD204671F1C41C400E67728 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */; };
 		6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */; };
 		6DDED52B1F1C7BED00200FBB /* nsx_watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5271F1C7BED00200FBB /* nsx_watcher.xcdatamodeld */; };
+		6DDED53A1F1C886400200FBB /* NSXEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5381F1C886400200FBB /* NSXEntry+CoreDataClass.swift */; };
+		6DDED53B1F1C886400200FBB /* NSXEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5391F1C886400200FBB /* NSXEntry+CoreDataProperties.swift */; };
+		6DDED53D1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53C1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift */; };
 		D6A1A70693462DCE9D3CFB4D /* Pods_nsx_watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +34,9 @@
 		6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatcherAPI.swift; sourceTree = "<group>"; };
 		6DDED5251F1C52B200200FBB /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		6DDED5281F1C7BED00200FBB /* nsx_watcher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = nsx_watcher.xcdatamodel; sourceTree = "<group>"; };
+		6DDED5381F1C886400200FBB /* NSXEntry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSXEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6DDED5391F1C886400200FBB /* NSXEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSXEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6DDED53C1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSXEntry+CoreDataMethods.swift"; sourceTree = "<group>"; };
 		754C7EF30D38FEABDA263735 /* Pods-nsx-watcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +107,9 @@
 		6DDED5261F1C7BED00200FBB /* models */ = {
 			isa = PBXGroup;
 			children = (
+				6DDED5381F1C886400200FBB /* NSXEntry+CoreDataClass.swift */,
+				6DDED5391F1C886400200FBB /* NSXEntry+CoreDataProperties.swift */,
+				6DDED53C1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift */,
 				6DDED5271F1C7BED00200FBB /* nsx_watcher.xcdatamodeld */,
 			);
 			path = models;
@@ -230,8 +239,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DDED53B1F1C886400200FBB /* NSXEntry+CoreDataProperties.swift in Sources */,
 				6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */,
 				6DD2045C1F1C41C400E67728 /* ViewController.swift in Sources */,
+				6DDED53A1F1C886400200FBB /* NSXEntry+CoreDataClass.swift in Sources */,
+				6DDED53D1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift in Sources */,
 				6DDED52B1F1C7BED00200FBB /* nsx_watcher.xcdatamodeld in Sources */,
 				6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */,
 			);

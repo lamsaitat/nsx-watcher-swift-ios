@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:nsx-watcher/models/NSXEntry+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:nsx-watcher.xcodeproj">
    </FileRef>
    <FileRef

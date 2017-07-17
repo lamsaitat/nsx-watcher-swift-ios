@@ -10,12 +10,13 @@
         <attribute name="detailPageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="displacement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gradeString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="htmlBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mileage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transmission" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NSXEntry" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="NSXEntry" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

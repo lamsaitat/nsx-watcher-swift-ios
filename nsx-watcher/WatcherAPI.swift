@@ -70,22 +70,22 @@ class WatcherAPI: NSObject {
                             
                             let nodes = parser.parseFragment(withContextElement: context)
                             
+                            var entries = [NSXEntry]()
                             for node in nodes {
-                                let childNodes = node.childNodes.array as! [HTMLElement]
-                                
-                                let contentNode = childNodes.filter({ elem -> Bool in
-                                    return elem.className == "jas-car-item-content"
-                                }).first!
-                                
-                                let auctionDateNode = (contentNode.childNodes.array as! [HTMLElement]).filter({ (elem: HTMLElement) -> Bool in
-                                    return elem.className == "jas-auction-date" && elem.outerHTML.contains("Auction Date")
-                                }).first!
-                                
-                                let auctionDateSpanString = (auctionDateNode.childNodes.lastObject as! HTMLElement).innerHTML
-                                
-                                debugPrint(contentNode)
-                                
+                                let moc = (UIApplication.shared.delegate! as! AppDelegate).persistentContainer.viewContext
+                                let entry = NSXEntry(entity: NSXEntry.entity(), insertInto: moc)
+                                entry.load(with: node)
+                                entries.append(entry)
                             }
+                            
+                            entries.sort(by: { (lhs, rhs) -> Bool in
+                                let lhsDate = lhs.auctionDate! as Date
+                                let rhsDate = rhs.auctionDate! as Date
+                                return lhsDate < rhsDate
+                            })
+                            
+                            debugPrint("entries = \(entries)")
+                            debugPrint("End of process")
                         } else {
                             
                         }
