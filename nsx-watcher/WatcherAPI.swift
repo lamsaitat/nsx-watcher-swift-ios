@@ -12,9 +12,19 @@ import HTMLKit
 
 class WatcherAPI: NSObject {
     
+    enum TimeFrameType: String {
+        case today = "Today"
+        case past = "Past"
+        case future = "Future"
+    }
+    
     var url = "http://prestigemotorsport.com.au/wp-admin/admin-ajax.php"
     
     func postCalls() {
+        
+    }
+    
+    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) {
         let headers = [
             "Pragma": "no-cache",
             "Cache-Control": "no-cache",
@@ -36,26 +46,30 @@ class WatcherAPI: NSObject {
             request.addValue(val, forHTTPHeaderField: key)
         }
         
-        let fields = [
+        var fields = [
             "action": "search_results_car",
-            "limit_start": "0",
-            "auction-date": "Past",
+            "limit_start": "\(offset)",
+            "auction-date": timeFrameType.rawValue,
             "marka_id": "5",
             "model_id": "604",
             "year_from": "1989",
             "year_to": "2008",
-            "transmissions": "Manual"
+            
         ]
+        if manualOnly {
+            fields["transmissions"] = "Manual"
+        }
         
         let queryString = makeQueryString(with: fields)
         request.httpBody = queryString.data(using: .utf8)
         
         
         let dataTask = manager.dataTask(with: request as URLRequest, completionHandler: { (response, responseObject, error) in
-//            debugPrint("response: \(response).  \n\nresponseObject= \(responseObject)")
-            
             if let error = error {
                 debugPrint("error = \(error)")
+                if let failure = failure {
+                    failure(error)
+                }
             } else {
                 if let json = responseObject as? [AnyHashable: Any] {
                     debugPrint("type = \(type(of: json["total"]!))")
@@ -78,16 +92,21 @@ class WatcherAPI: NSObject {
                                 entries.append(entry)
                             }
                             
-                            entries.sort(by: { (lhs, rhs) -> Bool in
-                                let lhsDate = lhs.auctionDate! as Date
-                                let rhsDate = rhs.auctionDate! as Date
-                                return lhsDate < rhsDate
-                            })
+//                            entries.sort(by: { (lhs, rhs) -> Bool in
+//                                let lhsDate = lhs.auctionDate! as Date
+//                                let rhsDate = rhs.auctionDate! as Date
+//                                return lhsDate < rhsDate
+//                            })
                             
                             debugPrint("entries = \(entries)")
                             debugPrint("End of process")
+                            if let success = success {
+                                success(total, entries)
+                            }
                         } else {
-                            
+                            if let success = success {
+                                success(0, nil)
+                            }
                         }
                     }
                 }
