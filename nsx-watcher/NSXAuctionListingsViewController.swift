@@ -19,6 +19,14 @@ class NSXAuctionListingsViewController: UITableViewController {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(hardReload), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        hardReload()
+    }
+    
+    func hardReload() {
         ARSLineProgress.show()
         viewModel.reloadAll(completion: {
             ARSLineProgress.hide()
