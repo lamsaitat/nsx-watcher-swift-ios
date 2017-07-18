@@ -93,15 +93,32 @@ class NSXAuctionListingsViewController: UITableViewController {
         }
     }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "CellSelectionSegue", let cell = sender as? NSXAuctionListingCell {
+            if let indexPath = tableView.indexPath(for: cell), let vc = segue.destination as? WebViewController {
+                var entry: NSXEntry!
+                switch indexPath.section {
+                case 0:
+                    entry = viewModel.futureEntries[indexPath.row]
+                case 1:
+                    entry = viewModel.todayEntries[indexPath.row]
+                case 2:
+                    entry = viewModel.pastEntries[indexPath.row]
+                default:
+                    entry = nil
+                }
+                vc.entry = entry
+            }
+        }
     }
-    */
+
 
 }
 
@@ -111,6 +128,7 @@ class NSXAuctionListingCell: UITableViewCell {
     @IBOutlet var carImageView: UIImageView!
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var conditionGradeLabel: UILabel!
     
     @IBOutlet var auctionDateLabel: UILabel!
     @IBOutlet var startingBidLabel: UILabel!
@@ -234,6 +252,7 @@ class NSXAuctionListingsViewModel {
     
     func configure(cell: NSXAuctionListingCell, entry: NSXEntry) {
         cell.titleLabel.text = entry.title
+        cell.conditionGradeLabel.text = entry.gradeString
         if let imageUrlString = entry.imageUrl, let imageUrl = URL(string: imageUrlString) {
             cell.carImageView.setImageWith(imageUrl, placeholderImage: UIImage(named: "loading"))
         } else {

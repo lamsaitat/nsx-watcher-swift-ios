@@ -8,22 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WebViewController: UIViewController {
+    
+    var entry: NSXEntry!
+    
+    @IBOutlet var webView: UIWebView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        let api = WatcherAPI()
-        api.postCalls()
+        if let urlString = entry.detailPageUrl, let url = URL(string: urlString) {
+            webView.loadRequest(URLRequest(url: url))
+        } else {
+            self.title = "Url not correct..."
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

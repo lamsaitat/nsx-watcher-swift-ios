@@ -10,23 +10,39 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="nsx_watcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WebViewController" customModule="nsx_watcher" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcA-kl-n1j">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DcA-kl-n1j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LSl-33-hli"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DcA-kl-n1j" secondAttribute="bottom" id="MfW-Vu-FIN"/>
+                            <constraint firstItem="DcA-kl-n1j" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Xvw-CM-VU3"/>
+                            <constraint firstAttribute="trailing" secondItem="DcA-kl-n1j" secondAttribute="trailing" id="osv-fZ-WO3"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="webView" destination="DcA-kl-n1j" id="cId-nA-x1C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1062" y="-36"/>
+            <point key="canvasLocation" x="2072" y="-285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FBU-8E-2ME">
@@ -49,7 +65,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="NSXAuctionListingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sTc-fc-CY5" customClass="NSXAuctionListingsViewController" customModule="nsx_watcher" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="289" sectionHeaderHeight="18" sectionFooterHeight="18" id="p7F-Jl-SxU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -57,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="289"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="4fU-HI-giG" id="nG2-72-Dfc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="288.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="289"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhi-eK-22T">
@@ -89,16 +105,25 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiU-5H-LUg">
+                                            <rect key="frame" x="10" y="32.000000000000114" width="41.666666666666664" height="20.666666666666671"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.34361245600000001" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="JbB-23-PvI" firstAttribute="leading" secondItem="nG2-72-Dfc" secondAttribute="leading" constant="10" id="5rT-C3-Sm3"/>
                                         <constraint firstAttribute="bottom" secondItem="nhi-eK-22T" secondAttribute="bottom" id="EtW-Wn-AXz"/>
                                         <constraint firstItem="pLs-QB-5Zv" firstAttribute="leading" secondItem="nG2-72-Dfc" secondAttribute="leading" constant="10" id="Gnr-iZ-H0v"/>
                                         <constraint firstItem="nhi-eK-22T" firstAttribute="top" secondItem="nG2-72-Dfc" secondAttribute="top" id="Htn-cy-z8R"/>
+                                        <constraint firstItem="AiU-5H-LUg" firstAttribute="leading" secondItem="pLs-QB-5Zv" secondAttribute="leading" id="Kde-CJ-Ska"/>
                                         <constraint firstItem="JNE-Ol-N9r" firstAttribute="leading" secondItem="nG2-72-Dfc" secondAttribute="leading" constant="10" id="NtX-U5-Rbl"/>
                                         <constraint firstItem="pLs-QB-5Zv" firstAttribute="top" secondItem="nG2-72-Dfc" secondAttribute="top" constant="10" id="RqX-SM-aoq"/>
                                         <constraint firstAttribute="bottom" secondItem="JNE-Ol-N9r" secondAttribute="bottom" constant="5" id="S0b-53-hdP"/>
                                         <constraint firstAttribute="trailing" secondItem="nhi-eK-22T" secondAttribute="trailing" id="UMB-Zo-bDI"/>
+                                        <constraint firstItem="AiU-5H-LUg" firstAttribute="top" secondItem="pLs-QB-5Zv" secondAttribute="bottom" constant="1.3333333333334423" id="azS-cv-YWX"/>
                                         <constraint firstAttribute="trailing" secondItem="JNE-Ol-N9r" secondAttribute="trailing" constant="10" id="e3P-3X-kLH"/>
                                         <constraint firstItem="nhi-eK-22T" firstAttribute="leading" secondItem="nG2-72-Dfc" secondAttribute="leading" id="gsy-pW-KcE"/>
                                         <constraint firstItem="JNE-Ol-N9r" firstAttribute="top" secondItem="JbB-23-PvI" secondAttribute="bottom" constant="2" id="hbU-Yb-FYh"/>
@@ -109,8 +134,10 @@
                                 <connections>
                                     <outlet property="auctionDateLabel" destination="JbB-23-PvI" id="gx3-qd-aIg"/>
                                     <outlet property="carImageView" destination="nhi-eK-22T" id="1OT-19-cG1"/>
+                                    <outlet property="conditionGradeLabel" destination="AiU-5H-LUg" id="UYq-XR-jiR"/>
                                     <outlet property="startingBidLabel" destination="JNE-Ol-N9r" id="3zU-dN-pMV"/>
                                     <outlet property="titleLabel" destination="pLs-QB-5Zv" id="mDW-Lc-dcE"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="CellSelectionSegue" id="nlb-li-95b"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -119,6 +146,7 @@
                             <outlet property="delegate" destination="sTc-fc-CY5" id="xAD-X6-1j6"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="kKG-MQ-ZAh"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOW-bx-Phj" userLabel="First Responder" sceneMemberID="firstResponder"/>

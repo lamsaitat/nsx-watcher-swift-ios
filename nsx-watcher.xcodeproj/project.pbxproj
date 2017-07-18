@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD204591F1C41C400E67728 /* AppDelegate.swift */; };
-		6DD2045C1F1C41C400E67728 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2045B1F1C41C400E67728 /* ViewController.swift */; };
+		6DD2045C1F1C41C400E67728 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2045B1F1C41C400E67728 /* WebViewController.swift */; };
 		6DD2045F1F1C41C400E67728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2045D1F1C41C400E67728 /* Main.storyboard */; };
 		6DD204641F1C41C400E67728 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204631F1C41C400E67728 /* Assets.xcassets */; };
 		6DD204671F1C41C400E67728 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */; };
@@ -27,7 +27,7 @@
 		4C80CAB7914CBBD7157F6882 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD204561F1C41C400E67728 /* nsx-watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nsx-watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD204591F1C41C400E67728 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6DD2045B1F1C41C400E67728 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6DD2045B1F1C41C400E67728 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6DD2045E1F1C41C400E67728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6DD204631F1C41C400E67728 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DD204661F1C41C400E67728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				6DD204591F1C41C400E67728 /* AppDelegate.swift */,
 				6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */,
 				6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */,
-				6DD2045B1F1C41C400E67728 /* ViewController.swift */,
+				6DD2045B1F1C41C400E67728 /* WebViewController.swift */,
 				6DD2045D1F1C41C400E67728 /* Main.storyboard */,
 				6DD204631F1C41C400E67728 /* Assets.xcassets */,
 				6DD204651F1C41C400E67728 /* LaunchScreen.storyboard */,
@@ -248,7 +248,7 @@
 				6DDED5411F1DDC7100200FBB /* NSXAuctionListingsViewController.swift in Sources */,
 				6DDED53B1F1C886400200FBB /* NSXEntry+CoreDataProperties.swift in Sources */,
 				6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */,
-				6DD2045C1F1C41C400E67728 /* ViewController.swift in Sources */,
+				6DD2045C1F1C41C400E67728 /* WebViewController.swift in Sources */,
 				6DDED53A1F1C886400200FBB /* NSXEntry+CoreDataClass.swift in Sources */,
 				6DDED53D1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift in Sources */,
 				6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */,
