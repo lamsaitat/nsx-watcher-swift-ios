@@ -29,7 +29,13 @@ class NSXAuctionListingsViewController: UITableViewController {
     func hardReload() {
         ARSLineProgress.show()
         viewModel.reloadAll(completion: {
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd hh:mma"
+            df.timeZone = NSTimeZone.local
+            self.title = "Last fetched: \(df.string(from: Date()))"
+            
             ARSLineProgress.hide()
+            self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         })
     }
