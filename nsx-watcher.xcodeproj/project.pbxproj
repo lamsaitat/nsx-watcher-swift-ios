@@ -382,7 +382,7 @@
 				DEVELOPMENT_TEAM = Q7P57HRXX2;
 				INFOPLIST_FILE = "nsx-watcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher-swift-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
@@ -397,7 +397,7 @@
 				DEVELOPMENT_TEAM = Q7P57HRXX2;
 				INFOPLIST_FILE = "nsx-watcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.com.henshin.nsx-watcher-swift-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
