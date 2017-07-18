@@ -24,12 +24,15 @@ extension NSXEntry {
                 
                 for contentChildNode in contentNode.childNodes.array as! [HTMLElement] {
                     if contentChildNode.className == "jas-auction-date" {
-                        if contentChildNode.outerHTML.contains("Auction Date") {
+                        if contentChildNode.outerHTML.contains("Auction Date"), let auctionDateSpanString = type(of: self).trimWhitespaces((contentChildNode.childNodes.lastObject as! HTMLElement).textContent) {
                             // Auction date
-                            let auctionDateSpanString = (contentChildNode.childNodes.lastObject as! HTMLElement).innerHTML
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = NSXEntry.auctionDateFormat
-                            auctionDate = dateFormatter.date(from: auctionDateSpanString) as NSDate?
+                            if auctionDateSpanString.lowercased().contains("today") {
+                                auctionDate = NSDate()
+                            } else {
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = NSXEntry.auctionDateFormat
+                                auctionDate = dateFormatter.date(from: auctionDateSpanString) as NSDate?
+                            }
                         } else {
                             // Auction location
                             auctionLocation = contentChildNode.innerHTML
@@ -56,6 +59,11 @@ extension NSXEntry {
                         title = type(of: self).trimWhitespaces(contentChildNode.textContent)
                     }
                 }
+            } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild {
+                let priceTag = (priceNode.childNodes.array  as! [HTMLElement]).filter({ (elem: HTMLElement) -> Bool in
+                    return elem.tagName == "h6"
+                }).first!
+                auctionPriceString = type(of: self).trimWhitespaces(priceTag.textContent)
             } else if htmlChild.tagName == "a", let imgChild = htmlChild.firstChild as? HTMLElement, let imgUrl = imgChild.attributes["src"] as? String {
                 imageUrl = imgUrl
                 
@@ -64,28 +72,6 @@ extension NSXEntry {
                 }
             }
         }
-        
-        
-        let contentNode = childNodes.filter({ elem -> Bool in
-            return elem.className == "jas-car-item-content"
-        }).first!
-        
-        let auctionDateNode = (contentNode.childNodes.array as! [HTMLElement]).filter({ (elem: HTMLElement) -> Bool in
-            return elem.className == "jas-auction-date" && elem.outerHTML.contains("Auction Date")
-        }).first!
-        let auctionDateSpanString = (auctionDateNode.childNodes.lastObject as! HTMLElement).innerHTML
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = NSXEntry.auctionDateFormat
-        auctionDate = dateFormatter.date(from: auctionDateSpanString) as NSDate?
-        
-        
-        let priceNode = childNodes.filter({ elem -> Bool in
-            return elem.className == "jas-price"
-        }).first!.firstChild!
-        let priceTag = (priceNode.childNodes.array  as! [HTMLElement]).filter({ (elem: HTMLElement) -> Bool in
-            return elem.tagName == "h6"
-        }).first!
-        auctionPriceString = priceTag.innerHTML
     }
     
     static func trimWhitespaces(_ inString: String?) -> String? {
