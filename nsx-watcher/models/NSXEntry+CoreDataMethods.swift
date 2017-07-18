@@ -60,14 +60,18 @@ extension NSXEntry {
                     }
                 }
             } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild {
-                let priceTag = (priceNode.childNodes.array  as! [HTMLElement]).filter({ (elem: HTMLElement) -> Bool in
-                    return elem.tagName == "h6"
-                }).first!
-                auctionPriceString = type(of: self).trimWhitespaces(priceTag.textContent)
+                for node in htmlChild.childNodes.array as! [HTMLElement] {
+                    if node.tagName == "a", let href = node.attributes["href"] as? String {
+                        detailPageUrl = href
+                    } else if node.tagName == "h6" {
+                        auctionPriceString = type(of: self).trimWhitespaces(node.textContent)
+                    }
+                }
             } else if htmlChild.tagName == "a", let imgChild = htmlChild.firstChild as? HTMLElement, let imgUrl = imgChild.attributes["src"] as? String {
                 imageUrl = imgUrl
                 
                 if let href = htmlChild.attributes["href"] as? String, let urlComponents = URLComponents(string: href), let queryDict = urlComponents.queryDictionary, let uid = queryDict["car_id"] as? String {
+                    detailPageUrl = href
                     carId = uid
                 }
             }
