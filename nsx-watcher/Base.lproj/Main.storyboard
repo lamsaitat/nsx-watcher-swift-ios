@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sTc-fc-CY5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rgf-3x-KC2">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,6 +28,22 @@
             </objects>
             <point key="canvasLocation" x="-1062" y="-36"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FBU-8E-2ME">
+            <objects>
+                <navigationController id="rgf-3x-KC2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IAe-Qc-RBQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sTc-fc-CY5" kind="relationship" relationship="rootViewController" id="eur-Lr-GYp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WJf-6R-dU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="449" y="-315"/>
+        </scene>
         <!--Auction Listings View Controller-->
         <scene sceneID="Nnw-Fc-SeT">
             <objects>
@@ -38,10 +54,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NSXAuctionListingCell" rowHeight="289" id="4fU-HI-giG" customClass="NSXAuctionListingCell" customModule="nsx_watcher" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55" width="414" height="289"/>
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="289"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="4fU-HI-giG" id="nG2-72-Dfc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="288.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="288.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhi-eK-22T">
@@ -103,10 +119,11 @@
                             <outlet property="delegate" destination="sTc-fc-CY5" id="xAD-X6-1j6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="kKG-MQ-ZAh"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FOW-bx-Phj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917.39130434782612" y="152.44565217391306"/>
+            <point key="canvasLocation" x="1299" y="-284"/>
         </scene>
     </scenes>
 </document>
