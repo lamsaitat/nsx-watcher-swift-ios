@@ -60,7 +60,7 @@ extension NSXEntry {
                     }
                 }
             } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild {
-                for node in htmlChild.childNodes.array as! [HTMLElement] {
+                for node in priceNode.childNodes.array as! [HTMLElement] {
                     if node.tagName == "a", let href = node.attributes["href"] as? String {
                         detailPageUrl = href
                     } else if node.tagName == "h6" {
