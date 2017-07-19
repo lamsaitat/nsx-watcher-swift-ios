@@ -101,9 +101,9 @@
 				6DD204681F1C41C400E67728 /* Info.plist */,
 				6DDED5251F1C52B200200FBB /* BridgingHeader.h */,
 				6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */,
-				6DDED5261F1C7BED00200FBB /* models */,
 				CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */,
 				CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */,
+				6DDED5261F1C7BED00200FBB /* models */,
 			);
 			path = "nsx-watcher";
 			sourceTree = "<group>";
