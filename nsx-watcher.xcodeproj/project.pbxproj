@@ -20,6 +20,8 @@
 		6DDED53D1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53C1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift */; };
 		6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */; };
 		6DDED5411F1DDC7100200FBB /* NSXAuctionListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */; };
+		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
+		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLComponents+queryItems.swift"; sourceTree = "<group>"; };
 		6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewController.swift; sourceTree = "<group>"; };
 		AC69BCB8BA132EFC945ECFF9 /* Pods-nsx-watcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.release.xcconfig"; sourceTree = "<group>"; };
+		CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCell.swift; sourceTree = "<group>"; };
+		CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewModel.swift; sourceTree = "<group>"; };
 		DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +102,8 @@
 				6DDED5251F1C52B200200FBB /* BridgingHeader.h */,
 				6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */,
 				6DDED5261F1C7BED00200FBB /* models */,
+				CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */,
+				CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */,
 			);
 			path = "nsx-watcher";
 			sourceTree = "<group>";
@@ -249,9 +255,11 @@
 				6DDED53B1F1C886400200FBB /* NSXEntry+CoreDataProperties.swift in Sources */,
 				6DDED5241F1C50DD00200FBB /* WatcherAPI.swift in Sources */,
 				6DD2045C1F1C41C400E67728 /* WebViewController.swift in Sources */,
+				CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */,
 				6DDED53A1F1C886400200FBB /* NSXEntry+CoreDataClass.swift in Sources */,
 				6DDED53D1F1C888800200FBB /* NSXEntry+CoreDataMethods.swift in Sources */,
 				6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */,
+				CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */,
 				6DDED52B1F1C7BED00200FBB /* nsx_watcher.xcdatamodeld in Sources */,
 				6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */,
 			);
