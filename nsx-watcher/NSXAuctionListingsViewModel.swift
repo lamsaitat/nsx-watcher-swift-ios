@@ -25,105 +25,45 @@ class NSXAuctionListingsViewModel {
     ]
     
     func reloadAll(completion: (() -> ())?) {
-        var allEntriesTotals = [
-            false,
-            false,
-            false
-        ]
-        
-        fetchFutureRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-            allEntriesTotals[0] = true
-            self.entries[.future]!.removeAll()
-            self.entries[.future]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
-                let lhsDate = lhs.auctionDate! as Date
-                let rhsDate = rhs.auctionDate! as Date
-                return lhsDate > rhsDate
-            }))
-            
-            if allEntriesTotals.filter({ (elem) -> Bool in
-                return elem == false
-            }).isEmpty, let completion = completion {
-                completion()
-            }
+        var allEntriesTotals = Dictionary<WatcherAPI.TimeFrameType, Bool>()
+        for section in sections {
+            allEntriesTotals[section] = false
         }
         
-        fetchTodayRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-            allEntriesTotals[1] = true
-            self.entries[.today]!.removeAll()
-            self.entries[.today]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
-                let lhsDate = lhs.auctionDate! as Date
-                let rhsDate = rhs.auctionDate! as Date
-                return lhsDate > rhsDate
-            }))
-            
-            if allEntriesTotals.filter({ (elem) -> Bool in
-                return elem == false
-            }).isEmpty, let completion = completion {
-                completion()
-            }
-        }
-        
-        fetchPastRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-            allEntriesTotals[2] = true
-            self.entries[.past]!.removeAll()
-            self.entries[.past]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
-                let lhsDate = lhs.auctionDate! as Date
-                let rhsDate = rhs.auctionDate! as Date
-                return lhsDate > rhsDate
-            }))
-            
-            if allEntriesTotals.filter({ (elem) -> Bool in
-                return elem == false
-            }).isEmpty, let completion = completion {
-                completion()
+        for section in sections {
+            fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
+                allEntriesTotals[section] = true
+                self.entries[section]!.removeAll()
+                self.entries[section]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
+                    let lhsDate = lhs.auctionDate! as Date
+                    let rhsDate = rhs.auctionDate! as Date
+                    return lhsDate > rhsDate
+                }))
+                
+                if allEntriesTotals.values.filter({ (elem) -> Bool in
+                    return elem == false
+                }).isEmpty, let completion = completion {
+                    completion()
+                }
             }
         }
     }
     
-    func fetchFutureRecords(inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
+    func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
         var fetchedEntries = inventory
-        api.fetchNSXAuctionRecords(timeFrameType: .future, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
+        api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
             
             if let entries = entries {
                 fetchedEntries.append(contentsOf: entries)
             }
             if fetchedEntries.count < total {
-                self.fetchFutureRecords(inventory: fetchedEntries, completion: completion)
+                self.fetchRecords(ofType: timeFrameType, inventory: fetchedEntries, completion: completion)
             } else if let completion = completion {
                 completion(fetchedEntries)
             }
         }, failure: nil)
     }
     
-    func fetchTodayRecords(inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
-        var fetchedEntries = inventory
-        api.fetchNSXAuctionRecords(timeFrameType: .today, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
-            
-            if let entries = entries {
-                fetchedEntries.append(contentsOf: entries)
-            }
-            if fetchedEntries.count < total {
-                self.fetchTodayRecords(inventory: fetchedEntries, completion: completion)
-            } else if let completion = completion {
-                completion(fetchedEntries)
-            }
-        }, failure: nil)
-    }
-    
-    func fetchPastRecords(inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
-        var fetchedEntries = inventory
-        api.fetchNSXAuctionRecords(timeFrameType: .past, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
-            
-            if let entries = entries {
-                fetchedEntries.append(contentsOf: entries)
-            }
-            if fetchedEntries.count < total {
-                self.fetchPastRecords(inventory: fetchedEntries, completion: completion)
-            } else if let completion = completion {
-                completion(fetchedEntries)
-            }
-        }, failure: nil)
-    }
     
     lazy var auctionDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
