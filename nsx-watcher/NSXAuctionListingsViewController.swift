@@ -34,9 +34,11 @@ class NSXAuctionListingsViewController: UITableViewController {
             df.timeZone = NSTimeZone.local
             self.title = "Last fetched: \(df.string(from: Date()))"
             
-            ARSLineProgress.hide()
-            self.tableView.refreshControl?.endRefreshing()
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                ARSLineProgress.hide()
+                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+            }
         })
     }
 
@@ -149,12 +151,10 @@ class NSXAuctionListingsViewModel {
             false
         ]
         
-        futureEntries.removeAll()
-        todayEntries.removeAll()
-        pastEntries.removeAll()
         
         fetchFutureRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[0] = true
+            self.futureEntries.removeAll()
             self.futureEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
@@ -170,6 +170,7 @@ class NSXAuctionListingsViewModel {
         
         fetchTodayRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[1] = true
+            self.todayEntries.removeAll()
             self.todayEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
@@ -185,6 +186,7 @@ class NSXAuctionListingsViewModel {
         
         fetchPastRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[2] = true
+            self.pastEntries.removeAll()
             self.pastEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
