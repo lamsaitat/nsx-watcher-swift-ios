@@ -24,7 +24,7 @@ class WatcherAPI: NSObject {
         
     }
     
-    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) {
+    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) -> URLSessionTask {
         let headers = [
             "Pragma": "no-cache",
             "Cache-Control": "no-cache",
@@ -108,6 +108,7 @@ class WatcherAPI: NSObject {
         })
         
         dataTask.resume()
+        return dataTask
     }
     
     

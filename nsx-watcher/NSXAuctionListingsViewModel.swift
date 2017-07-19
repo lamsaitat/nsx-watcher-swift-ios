@@ -18,21 +18,19 @@ class NSXAuctionListingsViewModel {
         .past
     ]
     
-    var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = [
-        WatcherAPI.TimeFrameType.future: [NSXEntry](),
-        WatcherAPI.TimeFrameType.today: [NSXEntry](),
-        WatcherAPI.TimeFrameType.past: [NSXEntry]()
-    ]
+    lazy var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = {
+        var entries = Dictionary<WatcherAPI.TimeFrameType, [NSXEntry]>()
+        for section in self.sections {
+            entries[section] = [NSXEntry]()
+        }
+        return entries
+    }()
+    
+    var activeTasks = Set<URLSessionTask>()
     
     func reloadAll(completion: (() -> ())?) {
-        var allEntriesTotals = Dictionary<WatcherAPI.TimeFrameType, Bool>()
-        for section in sections {
-            allEntriesTotals[section] = false
-        }
-        
         for section in sections {
             fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-                allEntriesTotals[section] = true
                 self.entries[section]!.removeAll()
                 self.entries[section]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                     let lhsDate = lhs.auctionDate! as Date
@@ -40,8 +38,8 @@ class NSXAuctionListingsViewModel {
                     return lhsDate > rhsDate
                 }))
                 
-                if allEntriesTotals.values.filter({ (elem) -> Bool in
-                    return elem == false
+                if self.activeTasks.filter({ task -> Bool in
+                    return task.state != .completed
                 }).isEmpty, let completion = completion {
                     completion()
                 }
@@ -51,7 +49,7 @@ class NSXAuctionListingsViewModel {
     
     func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
         var fetchedEntries = inventory
-        api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
+        let task = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
             
             if let entries = entries {
                 fetchedEntries.append(contentsOf: entries)
@@ -62,6 +60,7 @@ class NSXAuctionListingsViewModel {
                 completion(fetchedEntries)
             }
         }, failure: nil)
+        activeTasks.insert(task)
     }
     
     
