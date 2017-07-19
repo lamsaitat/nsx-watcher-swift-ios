@@ -72,33 +72,35 @@ class WatcherAPI: NSObject {
                 }
             } else {
                 if let json = responseObject as? [AnyHashable: Any] {
-                    debugPrint("type = \(type(of: json["total"]!))")
-                    if let total = json["total"] as? NSNumber {
+                    var total = 0
+                    if let jsontotal = json["total"] as? Int {
                         print("total = \(total)")
-                    } else if let totalString = json["total"] as? String, let total = Int(totalString) {
-                        print("wtf man total is string: \(total)")
+                        total = jsontotal
+                    } else if let totalString = json["total"] as? String, let jsontotal = Int(totalString) {
+                        print("wtf man total is string: \(jsontotal)")
+                        total = jsontotal
+                    }
+                    
+                    if total > 0, let carsHtml = json["cars_html"] as? String {
+                        let parser = HTMLParser(string: carsHtml)
+                        let context = HTMLElement(tagName: "jas-car-item")
                         
-                        if total > 0, let carsHtml = json["cars_html"] as? String {
-                            let parser = HTMLParser(string: carsHtml)
-                            let context = HTMLElement(tagName: "jas-car-item")
-                            
-                            let nodes = parser.parseFragment(withContextElement: context)
-                            
-                            var entries = [NSXEntry]()
-                            for node in nodes {
-                                let moc = (UIApplication.shared.delegate! as! AppDelegate).persistentContainer.viewContext
-                                let entry = NSXEntry(entity: NSXEntry.entity(), insertInto: moc)
-                                entry.load(with: node)
-                                entries.append(entry)
-                            }
-                            debugPrint("End of process")
-                            if let success = success {
-                                success(total, entries)
-                            }
-                        } else {
-                            if let success = success {
-                                success(0, nil)
-                            }
+                        let nodes = parser.parseFragment(withContextElement: context)
+                        
+                        var entries = [NSXEntry]()
+                        for node in nodes {
+                            let moc = (UIApplication.shared.delegate! as! AppDelegate).persistentContainer.viewContext
+                            let entry = NSXEntry(entity: NSXEntry.entity(), insertInto: moc)
+                            entry.load(with: node)
+                            entries.append(entry)
+                        }
+                        debugPrint("End of process")
+                        if let success = success {
+                            success(total, entries)
+                        }
+                    } else {
+                        if let success = success {
+                            success(0, nil)
                         }
                     }
                 }
