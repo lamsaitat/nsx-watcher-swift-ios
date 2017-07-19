@@ -98,7 +98,7 @@ class WatcherAPI: NSObject {
 //                                return lhsDate < rhsDate
 //                            })
                             
-                            debugPrint("entries = \(entries)")
+//                            debugPrint("entries = \(entries)")
                             debugPrint("End of process")
                             if let success = success {
                                 success(total, entries)
