@@ -12,6 +12,16 @@ import HTMLKit
 
 class WatcherAPI: NSObject {
     
+    lazy var manager: AFURLSessionManager = {
+        AFNetworkActivityIndicatorManager.shared().isEnabled = true
+        let config = URLSessionConfiguration.default
+        let manager = AFURLSessionManager(sessionConfiguration: config)
+        let serialiser = AFJSONResponseSerializer(readingOptions: .mutableContainers)
+        serialiser.acceptableContentTypes = Set(["application/json", "text/html"])
+        manager.responseSerializer = serialiser
+        return manager
+    }()
+    
     enum TimeFrameType: String {
         case today = "Today"
         case past = "Past"
@@ -19,10 +29,6 @@ class WatcherAPI: NSObject {
     }
     
     var url = "http://prestigemotorsport.com.au/wp-admin/admin-ajax.php"
-    
-    func postCalls() {
-        
-    }
     
     func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) -> URLSessionTask {
         let headers = [
@@ -34,11 +40,7 @@ class WatcherAPI: NSObject {
             "Accept": "application/json"
         ]
         
-        let config = URLSessionConfiguration.default
-        let manager = AFURLSessionManager(sessionConfiguration: config)
-        let serialiser = AFJSONResponseSerializer(readingOptions: .mutableContainers)
-        serialiser.acceptableContentTypes = Set(["application/json", "text/html"])
-        manager.responseSerializer = serialiser
+        
         let request = AFJSONRequestSerializer(writingOptions: .prettyPrinted).request(withMethod: "POST", urlString: url, parameters: nil, error: nil)
         
         // Apply headers
