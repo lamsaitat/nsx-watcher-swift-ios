@@ -21,8 +21,25 @@ class WebViewController: UIViewController {
         if let urlString = entry.detailPageUrl, let url = URL(string: urlString) {
             webView.loadRequest(URLRequest(url: url))
         } else {
-            self.title = "Url not correct..."
+            title = "Url not correct..."
         }
     }
 }
 
+extension WebViewController: UIWebViewDelegate {
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        spinner.tintColor = UIColor.blue
+        spinner.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        navigationItem.rightBarButtonItem = nil
+        title = "Failed to load"
+    }
+}
