@@ -91,14 +91,6 @@ class WatcherAPI: NSObject {
                                 entry.load(with: node)
                                 entries.append(entry)
                             }
-                            
-//                            entries.sort(by: { (lhs, rhs) -> Bool in
-//                                let lhsDate = lhs.auctionDate! as Date
-//                                let rhsDate = rhs.auctionDate! as Date
-//                                return lhsDate < rhsDate
-//                            })
-                            
-//                            debugPrint("entries = \(entries)")
                             debugPrint("End of process")
                             if let success = success {
                                 success(total, entries)
