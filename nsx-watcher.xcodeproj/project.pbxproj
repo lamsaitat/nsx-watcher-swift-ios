@@ -140,6 +140,7 @@
 				6DD204541F1C41C400E67728 /* Resources */,
 				5F9DF2B1BA98B83A79DC3EB2 /* [CP] Embed Pods Frameworks */,
 				50A558F3D97B5A0FA34B66DE /* [CP] Copy Pods Resources */,
+				CBE183A31F1EEF1F00D8E65E /* Increment build number */,
 			);
 			buildRules = (
 			);
@@ -228,6 +229,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CBE183A31F1EEF1F00D8E65E /* Increment build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment build number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "ver = `git rev-list --all |wc -l`.strip\nputs \"Build number is #{ver}\"\nfilepath = \"#{ENV['BUILT_PRODUCTS_DIR']}/#{ENV['INFOPLIST_PATH']}\"\nputs \"Updating #{filepath}\"\n`/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion #{ver}\" \"#{filepath}\"`\nfilepath = \"#{ENV['DWARF_DSYM_FOLDER_PATH']}/#{ENV['DWARF_DSYM_FILE_NAME']}/Contents/Info.plist\"\nputs \"Updating dSYM at #{filepath}\"\n`/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion #{ver}\" \"#{filepath}\"`";
 		};
 		D9C957473A858C6F53E80C88 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
