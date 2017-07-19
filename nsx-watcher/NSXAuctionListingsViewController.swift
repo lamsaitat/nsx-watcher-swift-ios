@@ -49,33 +49,14 @@ class NSXAuctionListingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0:
-            return viewModel.futureEntries.count
-        case 1:
-            return viewModel.todayEntries.count
-        case 2:
-            return viewModel.pastEntries.count
-        default:
-            return 0
-        }
+        return viewModel.entries[viewModel.sections[section]]!.count
+        
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NSXAuctionListingCell", for: indexPath) as! NSXAuctionListingCell
-        var entry: NSXEntry!
-        switch indexPath.section {
-        case 0:
-            entry = viewModel.futureEntries[indexPath.row]
-        case 1:
-            entry = viewModel.todayEntries[indexPath.row]
-        case 2:
-            entry = viewModel.pastEntries[indexPath.row]
-        default:
-            entry = nil
-        }
+        let entry = viewModel.entries[viewModel.sections[indexPath.section]]![indexPath.row]
         
         viewModel.configure(cell: cell, entry: entry)
 
@@ -83,16 +64,11 @@ class NSXAuctionListingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Future"
-        case 1:
-            return "Today"
-        case 2:
-            return "Past"
-        default:
+        guard section < viewModel.sections.count else {
             return nil
         }
+        
+        return viewModel.sections[section].rawValue
     }
 
 
@@ -105,17 +81,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         
         if segue.identifier == "CellSelectionSegue", let cell = sender as? NSXAuctionListingCell {
             if let indexPath = tableView.indexPath(for: cell), let vc = segue.destination as? WebViewController {
-                var entry: NSXEntry!
-                switch indexPath.section {
-                case 0:
-                    entry = viewModel.futureEntries[indexPath.row]
-                case 1:
-                    entry = viewModel.todayEntries[indexPath.row]
-                case 2:
-                    entry = viewModel.pastEntries[indexPath.row]
-                default:
-                    entry = nil
-                }
+                let entry = viewModel.entries[viewModel.sections[indexPath.section]]![indexPath.row]
                 vc.entry = entry
             }
         }
@@ -138,11 +104,20 @@ class NSXAuctionListingCell: UITableViewCell {
 }
 
 class NSXAuctionListingsViewModel {
-    var futureEntries = [NSXEntry]()
-    var todayEntries = [NSXEntry]()
-    var pastEntries = [NSXEntry]()
-    
+
     let api = WatcherAPI()
+    
+    let sections: [WatcherAPI.TimeFrameType] = [
+        .future,
+        .today,
+        .past
+    ]
+    
+    var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = [
+        WatcherAPI.TimeFrameType.future: [NSXEntry](),
+        WatcherAPI.TimeFrameType.today: [NSXEntry](),
+        WatcherAPI.TimeFrameType.past: [NSXEntry]()
+    ]
     
     func reloadAll(completion: (() -> ())?) {
         var allEntriesTotals = [
@@ -151,11 +126,10 @@ class NSXAuctionListingsViewModel {
             false
         ]
         
-        
         fetchFutureRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[0] = true
-            self.futureEntries.removeAll()
-            self.futureEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
+            self.entries[.future]!.removeAll()
+            self.entries[.future]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
                 return lhsDate > rhsDate
@@ -170,8 +144,8 @@ class NSXAuctionListingsViewModel {
         
         fetchTodayRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[1] = true
-            self.todayEntries.removeAll()
-            self.todayEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
+            self.entries[.today]!.removeAll()
+            self.entries[.today]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
                 return lhsDate > rhsDate
@@ -186,8 +160,8 @@ class NSXAuctionListingsViewModel {
         
         fetchPastRecords(inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             allEntriesTotals[2] = true
-            self.pastEntries.removeAll()
-            self.pastEntries.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
+            self.entries[.past]!.removeAll()
+            self.entries[.past]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
                 let lhsDate = lhs.auctionDate! as Date
                 let rhsDate = rhs.auctionDate! as Date
                 return lhsDate > rhsDate
