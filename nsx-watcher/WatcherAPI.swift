@@ -49,14 +49,13 @@ class WatcherAPI: NSObject {
         }
         
         var fields = [
-            "action": "search_results_car",
+            "action": "search_results_car_dev",
             "limit_start": "\(offset)",
             "auction-date": timeFrameType.rawValue,
             "marka_id": "5",
             "model_id": "604",
             "year_from": "1989",
             "year_to": "2008",
-            
         ]
         if manualOnly {
             fields["transmissions"] = "Manual"
