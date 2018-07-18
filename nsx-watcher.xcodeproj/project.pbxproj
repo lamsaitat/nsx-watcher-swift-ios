@@ -139,7 +139,6 @@
 				6DD204531F1C41C400E67728 /* Frameworks */,
 				6DD204541F1C41C400E67728 /* Resources */,
 				5F9DF2B1BA98B83A79DC3EB2 /* [CP] Embed Pods Frameworks */,
-				50A558F3D97B5A0FA34B66DE /* [CP] Copy Pods Resources */,
 				CBE183A31F1EEF1F00D8E65E /* Increment build number */,
 			);
 			buildRules = (
@@ -200,21 +199,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50A558F3D97B5A0FA34B66DE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5F9DF2B1BA98B83A79DC3EB2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

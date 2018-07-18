@@ -12,6 +12,10 @@ class NSXAuctionListingsViewModel {
     
     let api = WatcherAPI()
     
+    var lastLoadDates = [WatcherAPI.TimeFrameType: Date]()
+    
+    var selectedSearchTimeFrame: WatcherAPI.TimeFrameType = .future
+    
     let sections: [WatcherAPI.TimeFrameType] = [
         .future,
         .today,
@@ -26,9 +30,36 @@ class NSXAuctionListingsViewModel {
         return entries
     }()
     
+    var entriesForSelectedSection: [NSXEntry] {
+        guard let results = entries[selectedSearchTimeFrame] else {
+            return [NSXEntry]()
+        }
+        return results
+    }
+    
     var activeTasks = Set<URLSessionTask>()
     
-    func reloadAll(completion: (() -> ())?) {
+    func reloadSection(completion: ((Date?) -> ())?) {
+        let section = selectedSearchTimeFrame
+        fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
+            self.entries[section]!.removeAll()
+            self.entries[section]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
+                let lhsDate = lhs.auctionDate! as Date
+                let rhsDate = rhs.auctionDate! as Date
+                return lhsDate > rhsDate
+            }))
+            
+            if self.activeTasks.filter({ task -> Bool in
+                return task.state != .completed
+            }).isEmpty, let completion = completion {
+                let now = Date()
+                self.lastLoadDates[self.selectedSearchTimeFrame] = now
+                completion(now)
+            }
+        }
+    }
+    
+    func reloadAll(completion: ((Date?) -> ())?) {
         for section in sections {
             fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
                 self.entries[section]!.removeAll()
@@ -41,7 +72,9 @@ class NSXAuctionListingsViewModel {
                 if self.activeTasks.filter({ task -> Bool in
                     return task.state != .completed
                 }).isEmpty, let completion = completion {
-                    completion()
+                    let now = Date()
+                    self.lastLoadDates[self.selectedSearchTimeFrame] = now
+                    completion(now)
                 }
             }
         }
@@ -86,5 +119,19 @@ class NSXAuctionListingsViewModel {
         }
         
         cell.startingBidLabel.text = entry.auctionPriceString
+    }
+}
+
+
+extension NSXAuctionListingsViewModel {
+    var lastFetchedDateDisplayString: String {
+        guard let date = lastLoadDates[selectedSearchTimeFrame] else {
+            return "Didn't get the last fetched date."
+        }
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mma"
+        df.timeZone = NSTimeZone.local
+        
+        return "Last fetched: \(df.string(from: date))"
     }
 }

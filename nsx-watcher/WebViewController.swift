@@ -17,6 +17,7 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Loading..."
         // Do any additional setup after loading the view, typically from a nib.
         if let urlString = entry.detailPageUrl, let url = URL(string: urlString) {
             webView.loadRequest(URLRequest(url: url))
@@ -36,6 +37,7 @@ extension WebViewController: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         navigationItem.rightBarButtonItem = nil
+        title = entry.carId
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {

@@ -11,6 +11,9 @@ import ARSLineProgress
 
 class NSXAuctionListingsViewController: UITableViewController {
     
+    @IBOutlet var searchDateRangeSegmentedControl: UISegmentedControl!
+    @IBOutlet var lastFetchedTimeStampLabel: UILabel!
+    
     var viewModel = NSXAuctionListingsViewModel()
 
     override func viewDidLoad() {
@@ -28,35 +31,57 @@ class NSXAuctionListingsViewController: UITableViewController {
     
     func hardReload() {
         ARSLineProgress.show()
-        viewModel.reloadAll(completion: {
-            let df = DateFormatter()
-            df.dateFormat = "yyyy-MM-dd hh:mma"
-            df.timeZone = NSTimeZone.local
-            self.title = "Last fetched: \(df.string(from: Date()))"
+        lastFetchedTimeStampLabel.text = "Loading..."
+//        viewModel.reloadAll(completion: { lastLoadedDate in
+        viewModel.reloadSection(completion: { lastLoadedDate in
+//            let df = DateFormatter()
+//            df.dateFormat = "yyyy-MM-dd hh:mma"
+//            df.timeZone = NSTimeZone.local
+//            if let date = lastLoadedDate {
+//                self.lastFetchedTimeStampLabel.text = "Last fetched: \(df.string(from: date))"
+//            } else {
+//                self.lastFetchedTimeStampLabel.text = "Didn't get the last fetched date."
+//            }
             
             DispatchQueue.main.async {
                 ARSLineProgress.hide()
                 self.tableView.refreshControl?.endRefreshing()
+                self.lastFetchedTimeStampLabel.text = self.viewModel.lastFetchedDateDisplayString
                 self.tableView.reloadData()
             }
         })
     }
+    
+    // MARK: - IBActions
+    
+    @IBAction func searchDateRangeSegmentedControlValueChanged(_ sender: Any?) {
+        viewModel.selectedSearchTimeFrame = viewModel.sections[searchDateRangeSegmentedControl.selectedSegmentIndex]
+        
+        let now = Date()
+        if let lastLoadDate = viewModel.lastLoadDates[viewModel.selectedSearchTimeFrame], now.timeIntervalSince(lastLoadDate) < 60 * 10 {   // Less than 10 mins just display...
+            ARSLineProgress.hide()
+            tableView.refreshControl?.endRefreshing()
+            lastFetchedTimeStampLabel.text = viewModel.lastFetchedDateDisplayString
+            tableView.reloadData()
+        } else {
+            hardReload()
+        }
+    }
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sections.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.entries[viewModel.sections[section]]!.count
-        
+        return viewModel.entriesForSelectedSection.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NSXAuctionListingCell", for: indexPath) as! NSXAuctionListingCell
-        let entry = viewModel.entries[viewModel.sections[indexPath.section]]![indexPath.row]
+        let entry = viewModel.entriesForSelectedSection[indexPath.row]
         
         viewModel.configure(cell: cell, entry: entry)
 
@@ -68,7 +93,7 @@ class NSXAuctionListingsViewController: UITableViewController {
             return nil
         }
         
-        return viewModel.sections[section].rawValue
+        return viewModel.selectedSearchTimeFrame.rawValue
     }
 
 
@@ -81,7 +106,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         
         if segue.identifier == "CellSelectionSegue", let cell = sender as? NSXAuctionListingCell {
             if let indexPath = tableView.indexPath(for: cell), let vc = segue.destination as? WebViewController {
-                let entry = viewModel.entries[viewModel.sections[indexPath.section]]![indexPath.row]
+                let entry = viewModel.entriesForSelectedSection[indexPath.row]
                 vc.entry = entry
             }
         }
