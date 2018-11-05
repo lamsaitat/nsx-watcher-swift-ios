@@ -20,7 +20,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 150
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(hardReload), for: .valueChanged)
@@ -29,7 +29,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         hardReload()
     }
     
-    func hardReload() {
+    @objc func hardReload() {
         ARSLineProgress.show()
         lastFetchedTimeStampLabel.text = "Loading..."
 //        viewModel.reloadAll(completion: { lastLoadedDate in

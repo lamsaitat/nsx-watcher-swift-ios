@@ -1,26 +1,26 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - ARSLineProgress (2.1.1)
-  - HTMLKit (2.0.6)
+  - ARSLineProgress (3.0.0)
+  - HTMLKit (2.1.5)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1.0)
-  - ARSLineProgress (~> 2.0)
-  - HTMLKit (~> 2.0)
+  - AFNetworking (~> 3.2.1)
+  - ARSLineProgress (~> 3.0.0)
+  - HTMLKit (~> 2.1.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -29,10 +29,10 @@ SPEC REPOS:
     - HTMLKit
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  ARSLineProgress: 688f3fe810515200186cebee349e06f822575fe6
-  HTMLKit: 9e1bde384fbc20be51eb62f2c1ad331d6ceccfa2
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  ARSLineProgress: e6d1635325be8fdc3066513a15246c1330c77daf
+  HTMLKit: 91dbd983c94f264c6ddea27d317f5a66368dd20b
 
-PODFILE CHECKSUM: 59160894fb8e066a9fd0a809da0a92c19ef7c5bd
+PODFILE CHECKSUM: 084970f46b43ecf910c36e41399e88ef593e7ad6
 
 COCOAPODS: 1.5.3

@@ -163,6 +163,7 @@
 					6DD204551F1C41C400E67728 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5U8WFJ5LAS;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -418,7 +419,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.henshin.nsxauctionwatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -435,7 +437,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.henshin.nsxauctionwatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/nsx-watcher/BridgingHeader.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

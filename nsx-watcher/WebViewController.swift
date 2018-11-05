@@ -29,7 +29,7 @@ class WebViewController: UIViewController {
 
 extension WebViewController: UIWebViewDelegate {
     func webViewDidStartLoad(_ webView: UIWebView) {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let spinner = UIActivityIndicatorView(style: .whiteLarge)
         spinner.tintColor = UIColor.blue
         spinner.startAnimating()
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinner)

@@ -6,8 +6,7 @@ target 'nsx-watcher' do
   use_frameworks!
 
   # Pods for nsx-watcher
-  pod 'AFNetworking', '~> 3.1.0'
-  pod 'HTMLKit', '~> 2.0'
-  
-  pod 'ARSLineProgress', '~> 2.0'
+  pod 'AFNetworking', '~> 3.2.1'
+  pod 'HTMLKit', '~> 2.1.5'
+  pod 'ARSLineProgress', '~> 3.0.0'
 end
