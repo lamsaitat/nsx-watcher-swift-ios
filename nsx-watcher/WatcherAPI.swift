@@ -90,9 +90,9 @@ class WatcherAPI: NSObject {
                         
                         var entries = [NSXEntry]()
                         for node in nodes {
-                            let entry = NSXEntry()
-                            entry.load(with: node)
-                            entries.append(entry)
+                            if let entry = NSXEntry(with: node) {
+                                entries.append(entry)
+                            }
                         }
                         debugPrint("End of process")
                         if let success = success {

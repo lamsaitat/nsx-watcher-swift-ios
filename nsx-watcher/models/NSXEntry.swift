@@ -9,7 +9,8 @@
 import Foundation
 import HTMLKit
 
-class NSXEntry {
+
+struct NSXEntry {
     var auctionDate: NSDate?
     var auctionLocation: String?
     var auctionPriceString: String?
@@ -30,11 +31,13 @@ class NSXEntry {
 extension NSXEntry {
     
     static let auctionDateFormat = "dd-MM-yyyy"
-    
-    func load(with htmlNode: HTMLNode) {
+
+    init?(with htmlNode: HTMLNode) {
         htmlBody = htmlNode.outerHTML
-        
-        let childNodes = htmlNode.childNodes.array as! [HTMLElement]
+        guard let childNodes = htmlNode.childNodes.array as? [HTMLElement] else {
+            debugPrint("Child nodes not available, not parsing.")
+            return nil
+        }
         
         for htmlChild in childNodes {
             if htmlChild.className == "jas-car-item-content" {
@@ -42,7 +45,9 @@ extension NSXEntry {
                 
                 for contentChildNode in contentNode.childNodes.array as! [HTMLElement] {
                     if contentChildNode.className == "jas-auction-date" {
-                        if contentChildNode.outerHTML.contains("Auction Date"), let auctionDateSpanString = type(of: self).trimWhitespaces((contentChildNode.childNodes.lastObject as! HTMLElement).textContent) {
+                        if contentChildNode.outerHTML.contains("Auction Date"), let endNode = contentChildNode.childNodes.lastObject as? HTMLElement {
+                            let auctionDateSpanString = endNode.textContent.trimWhitespaces()
+                            
                             // Auction date
                             if auctionDateSpanString.lowercased().contains("today") {
                                 auctionDate = NSDate()
@@ -55,18 +60,17 @@ extension NSXEntry {
                             // Auction location
                             auctionLocation = contentChildNode.innerHTML
                         }
-                    } else if contentChildNode.tagName == "ul" {
-                        for (idx, li) in (contentChildNode.childNodes.array as! [HTMLElement]).enumerated() {
-                            if let content = type(of: self).trimWhitespaces(li.textContent) {
-                                if idx == 0 || content.hasSuffix("cc") {
-                                    displacement = content
-                                } else if idx == 1 {
-                                    transmission = content
-                                } else if idx == 2 {
-                                    mileage = content
-                                } else if idx == 3 {
-                                    gradeString = content
-                                }
+                    } else if contentChildNode.tagName == "ul", let nodes = contentChildNode.childNodes.array as? [HTMLElement] {
+                        for (idx, li) in nodes.enumerated() {
+                            let content = li.textContent.trimWhitespaces()
+                            if idx == 0 || content.hasSuffix("cc") {
+                                displacement = content
+                            } else if idx == 1 {
+                                transmission = content
+                            } else if idx == 2 {
+                                mileage = content
+                            } else if idx == 3 {
+                                gradeString = content
                             }
                         }
                     } else if contentChildNode.tagName == "a" {
@@ -74,15 +78,15 @@ extension NSXEntry {
                             detailPageUrl = href
                         }
                     } else if contentChildNode.tagName == "h5" {
-                        title = type(of: self).trimWhitespaces(contentChildNode.textContent)
+                        title = contentChildNode.textContent.trimWhitespaces()
                     }
                 }
-            } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild {
-                for node in priceNode.childNodes.array as! [HTMLElement] {
+            } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild, let nodes = priceNode.childNodes.array as? [HTMLElement] {
+                for node in nodes {
                     if node.tagName == "a", let href = node.attributes["href"] as? String {
                         detailPageUrl = href
                     } else if node.tagName == "h6" {
-                        auctionPriceString = type(of: self).trimWhitespaces(node.textContent)
+                        auctionPriceString = node.textContent.trimWhitespaces()
                     }
                 }
             } else if htmlChild.tagName == "a", let imgChild = htmlChild.firstChild as? HTMLElement, let imgUrl = imgChild.attributes["src"] as? String {
@@ -95,13 +99,11 @@ extension NSXEntry {
             }
         }
     }
-    
-    static func trimWhitespaces(_ inString: String?) -> String? {
-        guard let input = inString else {
-            return nil
-        }
-        
-        return input.replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-    }
+}
 
+
+fileprivate extension String {
+    func trimWhitespaces() -> String {
+        return replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+    }
 }
