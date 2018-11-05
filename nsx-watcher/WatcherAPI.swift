@@ -90,8 +90,7 @@ class WatcherAPI: NSObject {
                         
                         var entries = [NSXEntry]()
                         for node in nodes {
-                            let moc = (UIApplication.shared.delegate! as! AppDelegate).persistentContainer.viewContext
-                            let entry = NSXEntry(entity: NSXEntry.entity(), insertInto: moc)
+                            let entry = NSXEntry()
                             entry.load(with: node)
                             entries.append(entry)
                         }

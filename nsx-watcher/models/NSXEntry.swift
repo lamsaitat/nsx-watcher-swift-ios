@@ -9,6 +9,24 @@
 import Foundation
 import HTMLKit
 
+class NSXEntry {
+    var auctionDate: NSDate?
+    var auctionLocation: String?
+    var auctionPriceString: String?
+    var carId: String?
+    var dateAdded: NSDate?
+    var dateModified: NSDate?
+    var detailPageUrl: String?
+    var displacement: String?
+    var gradeString: String?
+    var imageUrl: String?
+    var mileage: String?
+    var title: String?
+    var transmission: String?
+    var htmlBody: String?
+}
+
+
 extension NSXEntry {
     
     static let auctionDateFormat = "dd-MM-yyyy"
