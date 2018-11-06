@@ -43,11 +43,7 @@ class NSXAuctionListingsViewModel {
         let section = selectedSearchTimeFrame
         fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
             self.entries[section]!.removeAll()
-            self.entries[section]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
-                let lhsDate = lhs.auctionDate! as Date
-                let rhsDate = rhs.auctionDate! as Date
-                return lhsDate > rhsDate
-            }))
+            self.entries[section]!.append(contentsOf: results.sorted(by: { return $0.auctionDate > $1.auctionDate}))
             
             if self.activeTasks.filter({ task -> Bool in
                 return task.state != .completed
@@ -63,11 +59,7 @@ class NSXAuctionListingsViewModel {
         for section in sections {
             fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
                 self.entries[section]!.removeAll()
-                self.entries[section]!.append(contentsOf: results.sorted(by: { (lhs, rhs) -> Bool in
-                    let lhsDate = lhs.auctionDate! as Date
-                    let rhsDate = rhs.auctionDate! as Date
-                    return lhsDate > rhsDate
-                }))
+                self.entries[section]!.append(contentsOf: results.sorted(by: {return $0.auctionDate > $1.auctionDate}))
                 
                 if self.activeTasks.filter({ task -> Bool in
                     return task.state != .completed
@@ -112,11 +104,7 @@ class NSXAuctionListingsViewModel {
             cell.carImageView.image = nil
         }
         
-        if let auctionDate = entry.auctionDate {
-            cell.auctionDateLabel.text = "Auction Date: \(auctionDateFormatter.string(from: auctionDate as Date))"
-        } else {
-            cell.auctionDateLabel.text = "Auction Date: N/A"
-        }
+        cell.auctionDateLabel.text = "Auction Date: \(auctionDateFormatter.string(from: entry.auctionDate))"
         
         cell.startingBidLabel.text = entry.auctionPriceString
     }

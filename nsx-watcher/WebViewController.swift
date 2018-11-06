@@ -19,7 +19,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         title = "Loading..."
         // Do any additional setup after loading the view, typically from a nib.
-        if let urlString = entry.detailPageUrl, let url = URL(string: urlString) {
+        if let url = entry.url {
             webView.loadRequest(URLRequest(url: url))
         } else {
             title = "Url not correct..."
