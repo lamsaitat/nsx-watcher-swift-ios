@@ -32,17 +32,7 @@ class NSXAuctionListingsViewController: UITableViewController {
     @objc func hardReload() {
         ARSLineProgress.show()
         lastFetchedTimeStampLabel.text = "Loading..."
-//        viewModel.reloadAll(completion: { lastLoadedDate in
         viewModel.reloadSection(completion: { lastLoadedDate in
-//            let df = DateFormatter()
-//            df.dateFormat = "yyyy-MM-dd hh:mma"
-//            df.timeZone = NSTimeZone.local
-//            if let date = lastLoadedDate {
-//                self.lastFetchedTimeStampLabel.text = "Last fetched: \(df.string(from: date))"
-//            } else {
-//                self.lastFetchedTimeStampLabel.text = "Didn't get the last fetched date."
-//            }
-            
             DispatchQueue.main.async {
                 ARSLineProgress.hide()
                 self.tableView.refreshControl?.endRefreshing()
@@ -80,10 +70,20 @@ class NSXAuctionListingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NSXAuctionListingCell", for: indexPath) as! NSXAuctionListingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSXAuctionListingCell.reuseIdentifier, for: indexPath) as! NSXAuctionListingCell
         let entry = viewModel.entriesForSelectedSection[indexPath.row]
+        let vm = NSXAuctionListingCellViewModel(entry)
         
-        viewModel.configure(cell: cell, entry: entry)
+        cell.titleLabel.text = vm.titleDisplayString
+        cell.conditionGradeLabel.text = vm.conditionGradeDisplayString
+        cell.auctionDateLabel.text = vm.auctionDateDisplayString
+        cell.startingBidLabel.text = vm.startingBidDisplayString
+        
+        if let url = vm.imageURL {
+            cell.carImageView.setImageWith(url, placeholderImage: cell.placeholderImage)
+        } else {
+            cell.carImageView.image = cell.placeholderImage
+        }
 
         return cell
     }

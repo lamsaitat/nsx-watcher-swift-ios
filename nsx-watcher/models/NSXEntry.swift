@@ -20,6 +20,8 @@ struct NSXEntry {
     
     let carId: String?
     let title: String?
+    
+    // These are for filtering purposes.
     let displacement: String?
     let gradeString: String?
     let imageUrl: String?
@@ -61,6 +63,7 @@ extension NSXEntry {
         transmission = dictionary["transmission"] as? String
     }
 }
+
 
 fileprivate extension NSXEntry {
     class Parser {

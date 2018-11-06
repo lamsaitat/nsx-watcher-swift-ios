@@ -9,13 +9,15 @@
 import UIKit
 
 class NSXAuctionListingCell: UITableViewCell {
+    static let reuseIdentifier = "NSXAuctionListingCell"
     
     @IBOutlet var carImageView: UIImageView!
-    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var conditionGradeLabel: UILabel!
-    
     @IBOutlet var auctionDateLabel: UILabel!
     @IBOutlet var startingBidLabel: UILabel!
     
+    lazy var placeholderImage: UIImage = {
+        return UIImage(named: "loading")!
+    }()
 }
