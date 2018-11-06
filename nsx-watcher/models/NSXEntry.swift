@@ -139,7 +139,14 @@ fileprivate extension NSXEntry {
 
 
 fileprivate extension String {
+    /**
+     The first revision of the API returned saw some inconsistent whitespaces,
+     this method trims excessive whitespaces, as well as leading and trailing
+     whitespaces for display OCD.
+     */
     func trimWhitespaces() -> String {
-        return replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        return replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
     }
 }
