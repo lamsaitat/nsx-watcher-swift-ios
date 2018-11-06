@@ -28,18 +28,17 @@ class WatcherAPI: NSObject {
         case future = "Future"
     }
     
-    var url = "http://prestigemotorsport.com.au/wp-admin/admin-ajax.php"
+    let url = "http://prestigemotorsport.com.au/wp-admin/admin-ajax.php"
+    let headers = [
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json"
+    ]
     
     func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) -> URLSessionTask {
-        let headers = [
-            "Pragma": "no-cache",
-            "Cache-Control": "no-cache",
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "X-Requested-With": "XMLHttpRequest",
-            "Accept": "application/json"
-        ]
-        
         
         let request = AFJSONRequestSerializer(writingOptions: .prettyPrinted).request(withMethod: "POST", urlString: url, parameters: nil, error: nil)
         
@@ -63,7 +62,6 @@ class WatcherAPI: NSObject {
         
         let queryString = makeQueryString(with: fields)
         request.httpBody = queryString.data(using: .utf8)
-        
         
         let dataTask = manager.dataTask(with: request as URLRequest, completionHandler: { (response, responseObject, error) in
             if let error = error {
