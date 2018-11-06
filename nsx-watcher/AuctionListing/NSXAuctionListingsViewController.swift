@@ -89,10 +89,6 @@ class NSXAuctionListingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard section < viewModel.sections.count else {
-            return nil
-        }
-        
         return viewModel.selectedSearchTimeFrame.rawValue
     }
 
