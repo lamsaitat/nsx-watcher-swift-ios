@@ -106,7 +106,16 @@ fileprivate extension NSXEntry {
                                 } else if idx == 2 {
                                     dictionary["mileage"] = content
                                 } else if idx == 3 {
-                                    dictionary["gradeString"] = content
+                                    let tns = li.childNodes.filter({ cn -> Bool in
+                                        return cn is HTMLText
+                                    }) as! [HTMLText]
+                                    for tn in tns {
+                                        let gradeString = tn.textContent.trimWhitespaces()
+                                        if gradeString.hasPrefix("Grade") {
+                                            dictionary["gradeString"] = gradeString
+                                            break
+                                        }
+                                    }
                                 }
                             }
                         } else if contentChildNode.tagName == "a" {
