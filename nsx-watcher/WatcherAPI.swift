@@ -52,9 +52,11 @@ class WatcherAPI: NSObject {
             "limit_start": "\(offset)",
             "auction-date": timeFrameType.rawValue,
             "marka_id": "5",
-            "model_id": "604",
+//            "model_id": "604",    // NSX
+            "model_id": "567",   // Civic
             "year_from": "1989",
-            "year_to": "2008",
+//            "year_to": "2008",
+            "year_to": "2011",
         ]
         if manualOnly {
             fields["transmissions"] = "Manual"
