@@ -9,4 +9,7 @@ target 'nsx-watcher' do
   pod 'AFNetworking', '~> 3.2.1'
   pod 'HTMLKit', '~> 2.1.5', :inhibit_warnings => true
   pod 'ARSLineProgress', '~> 3.0.0'
+  
+  pod 'RxSwift', '~> 4.4.0'
+  pod 'RxCocoa', '~> 4.4.0'
 end

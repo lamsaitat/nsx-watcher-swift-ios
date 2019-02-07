@@ -16,23 +16,36 @@ PODS:
     - AFNetworking/NSURLSession
   - ARSLineProgress (3.0.0)
   - HTMLKit (2.1.5)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
   - ARSLineProgress (~> 3.0.0)
   - HTMLKit (~> 2.1.5)
+  - RxCocoa (~> 4.4.0)
+  - RxSwift (~> 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - ARSLineProgress
     - HTMLKit
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   ARSLineProgress: e6d1635325be8fdc3066513a15246c1330c77daf
   HTMLKit: 91dbd983c94f264c6ddea27d317f5a66368dd20b
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: fbe6a089a423575268ca54d9a439995da6782167
+PODFILE CHECKSUM: 8478df5f23066f84df1f84513492314d28e86874
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0
