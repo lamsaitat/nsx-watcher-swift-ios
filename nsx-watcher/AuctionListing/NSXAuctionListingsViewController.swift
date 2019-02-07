@@ -8,6 +8,8 @@
 
 import UIKit
 import ARSLineProgress
+import RxSwift
+import RxCocoa
 
 class NSXAuctionListingsViewController: UITableViewController {
     
@@ -15,16 +17,33 @@ class NSXAuctionListingsViewController: UITableViewController {
     @IBOutlet var lastFetchedTimeStampLabel: UILabel!
     
     var viewModel = NSXAuctionListingsViewModel()
+    var disposeBag = DisposeBag()
+    var listings = BehaviorRelay(value: [NSXAuctionListingCellViewModel]())
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.dataSource = nil
+        tableView.delegate = nil
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(hardReload), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        
+        listings.asObservable().bind(to: tableView.rx.items(cellIdentifier: NSXAuctionListingCell.reuseIdentifier, cellType: NSXAuctionListingCell.self)) {
+            (row, vm, cell) in
+            cell.titleLabel.text = vm.titleDisplayString
+            cell.conditionGradeLabel.text = vm.conditionGradeDisplayString
+            cell.auctionDateLabel.text = vm.auctionDateDisplayString
+            cell.startingBidLabel.text = vm.startingBidDisplayString
+            
+            if let url = vm.imageURL {
+                cell.carImageView.setImageWith(url, placeholderImage: cell.placeholderImage)
+            } else {
+                cell.carImageView.image = cell.placeholderImage
+            }
+        }.disposed(by: disposeBag)
         
         hardReload()
     }
@@ -37,9 +56,19 @@ class NSXAuctionListingsViewController: UITableViewController {
                 ARSLineProgress.hide()
                 self.tableView.refreshControl?.endRefreshing()
                 self.lastFetchedTimeStampLabel.text = self.viewModel.lastFetchedDateDisplayString
-                self.tableView.reloadData()
+
+                self.tableReload()
             }
         })
+    }
+    
+    func tableReload() {
+        var vms = [NSXAuctionListingCellViewModel]()
+        for item in viewModel.entriesForSelectedSection {
+            let vm = NSXAuctionListingCellViewModel(item)
+            vms.append(vm)
+        }
+        listings.accept(vms)
     }
     
     // MARK: - IBActions
@@ -52,44 +81,10 @@ class NSXAuctionListingsViewController: UITableViewController {
             ARSLineProgress.hide()
             tableView.refreshControl?.endRefreshing()
             lastFetchedTimeStampLabel.text = viewModel.lastFetchedDateDisplayString
-            tableView.reloadData()
+            tableReload()
         } else {
             hardReload()
         }
-    }
-    
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.entriesForSelectedSection.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSXAuctionListingCell.reuseIdentifier, for: indexPath) as! NSXAuctionListingCell
-        let entry = viewModel.entriesForSelectedSection[indexPath.row]
-        let vm = NSXAuctionListingCellViewModel(entry)
-        
-        cell.titleLabel.text = vm.titleDisplayString
-        cell.conditionGradeLabel.text = vm.conditionGradeDisplayString
-        cell.auctionDateLabel.text = vm.auctionDateDisplayString
-        cell.startingBidLabel.text = vm.startingBidDisplayString
-        
-        if let url = vm.imageURL {
-            cell.carImageView.setImageWith(url, placeholderImage: cell.placeholderImage)
-        } else {
-            cell.carImageView.image = cell.placeholderImage
-        }
-
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.selectedSearchTimeFrame.rawValue
     }
 
 
