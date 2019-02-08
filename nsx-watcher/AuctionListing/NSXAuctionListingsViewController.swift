@@ -45,6 +45,12 @@ class NSXAuctionListingsViewController: UITableViewController {
             }
         }.disposed(by: disposeBag)
         
+        tableView.rx.willDisplayCell.subscribe(onNext: { cell, indexPath in
+            if indexPath.row == self.viewModel.entriesForSelectedSection.count - 1 && self.viewModel.canLoadMore(section: self.viewModel.selectedSearchTimeFrame) {
+                self.loadMore()
+            }
+        }).disposed(by: disposeBag)
+        
         hardReload()
     }
     
@@ -57,6 +63,25 @@ class NSXAuctionListingsViewController: UITableViewController {
                 self.tableView.refreshControl?.endRefreshing()
                 self.lastFetchedTimeStampLabel.text = self.viewModel.lastFetchedDateDisplayString
 
+                self.tableReload()
+            }
+        })
+    }
+    
+    @objc func loadMore() {
+        guard viewModel.canLoadMore(section: viewModel.selectedSearchTimeFrame) else {
+            return
+        }
+        
+        ARSLineProgress.show()
+        lastFetchedTimeStampLabel.text = "Loading more..."
+        
+        viewModel.loadMore(completion: { lastLoadedDate in
+            DispatchQueue.main.async {
+                ARSLineProgress.hide()
+                self.tableView.refreshControl?.endRefreshing()
+                self.lastFetchedTimeStampLabel.text = self.viewModel.lastFetchedDateDisplayString
+                
                 self.tableReload()
             }
         })

@@ -89,6 +89,23 @@ extension NSXAuctionListingsViewModel {
         }
     }
     
+    func loadMore(completion: ((Date?) -> ())?) {
+        let section = selectedSearchTimeFrame
+        fetchRecords(ofType: section, offset: entries[section]!.count) { (results: [NSXEntry]) in
+            self.entries[section]!.append(contentsOf: results.sorted(by: {
+                return $0.auctionDate > $1.auctionDate
+            }))
+            
+            if self.activeTasks.filter({ task -> Bool in
+                return task.state != .completed
+            }).isEmpty, let completion = completion {
+                let now = Date()
+                self.lastLoadDates[self.selectedSearchTimeFrame] = now
+                completion(now)
+            }
+        }
+    }
+    
     /**
      Reload entries for all available timeFrame.
      */
