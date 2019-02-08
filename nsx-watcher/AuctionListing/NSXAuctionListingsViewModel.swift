@@ -22,6 +22,12 @@ class NSXAuctionListingsViewModel {
         .past
     ]
     
+    var entriesLoaded: [WatcherAPI.TimeFrameType: Int] = [
+        .future: 0,
+        .today: 0,
+        .past: 0
+    ]
+    
     lazy var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = {
         var entries = Dictionary<WatcherAPI.TimeFrameType, [NSXEntry]>()
         for section in self.sections {
@@ -38,6 +44,10 @@ class NSXAuctionListingsViewModel {
     }
     
     var activeTasks = Set<URLSessionTask>()
+    
+    func canLoadMore(section: WatcherAPI.TimeFrameType) -> Bool {
+        return entries[section]!.count < entriesLoaded[section]!
+    }
 }
 
 
@@ -102,16 +112,25 @@ extension NSXAuctionListingsViewModel {
     }
     
     func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
-        var fetchedEntries = inventory
-        let task = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: fetchedEntries.count, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
-            
+        return fetchRecords(ofType: timeFrameType, offset: inventory.count, completion: completion)
+    }
+    
+    
+    /**
+     * Allows for paginated fetch.
+     */
+    func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, offset: Int, completion: (([NSXEntry]) -> ())?) {
+        
+        let task = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
+            self.entriesLoaded[timeFrameType] = total
             if let entries = entries {
-                fetchedEntries.append(contentsOf: entries)
+                if offset == 0 {
+                    self.entries[timeFrameType] = [NSXEntry]()
+                }
+                self.entries[timeFrameType]!.append(contentsOf: entries)
             }
-            if fetchedEntries.count < total {
-                self.fetchRecords(ofType: timeFrameType, inventory: fetchedEntries, completion: completion)
-            } else if let completion = completion {
-                completion(fetchedEntries)
+            if let completion = completion {
+                completion(self.entries[timeFrameType]!)
             }
         }, failure: nil)
         activeTasks.insert(task)
