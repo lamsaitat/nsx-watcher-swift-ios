@@ -28,14 +28,6 @@ class NSXAuctionListingsViewModel {
         .past: 0
     ]
     
-//    lazy var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = {
-//        var entries = Dictionary<WatcherAPI.TimeFrameType, [NSXEntry]>()
-//        for section in self.sections {
-//            entries[section] = [NSXEntry]()
-//        }
-//        return entries
-//    }()
-    
     lazy var entryCellViewModels: [WatcherAPI.TimeFrameType: [NSXAuctionListingCellViewModel]] = {
         var vms = [WatcherAPI.TimeFrameType: [NSXAuctionListingCellViewModel]]()
         for section in self.sections {
@@ -76,22 +68,28 @@ extension NSXAuctionListingsViewModel {
 
 // MARK: - API call methods
 extension NSXAuctionListingsViewModel {
+    
+    private func process(_ entries: [NSXEntry], forSection section: WatcherAPI.TimeFrameType, shouldRemoveExisting: Bool) {
+        if shouldRemoveExisting {
+            entryCellViewModels[section]!.removeAll()
+        }
+        
+        let sorted = entries.sorted(by: {
+            return $0.auctionDate > $1.auctionDate
+        })
+        
+        for entry in sorted {
+            let vm = NSXAuctionListingCellViewModel(entry)
+            entryCellViewModels[section]!.append(vm)
+        }
+    }
     /**
      Reload entries for a particular timeFrame.
     */
     func reloadSection(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
-        fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-            self.entryCellViewModels[section]!.removeAll()
-            
-            let sorted = results.sorted(by: {
-                return $0.auctionDate > $1.auctionDate
-            })
-            
-            for entry in sorted {
-                let vm = NSXAuctionListingCellViewModel(entry)
-                self.entryCellViewModels[section]!.append(vm)
-            }
+        fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
+            self.process(results, forSection: section, shouldRemoveExisting: true)
             
             if self.activeTasks.filter({ task -> Bool in
                 return task.state != .completed
@@ -106,14 +104,7 @@ extension NSXAuctionListingsViewModel {
     func loadMore(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
         fetchRecords(ofType: section, offset: entryCellViewModels[section]!.count) { (results: [NSXEntry]) in
-            let sorted = results.sorted(by: {
-                return $0.auctionDate > $1.auctionDate
-            })
-            
-            for entry in sorted {
-                let vm = NSXAuctionListingCellViewModel(entry)
-                self.entryCellViewModels[section]!.append(vm)
-            }
+            self.process(results, forSection: section, shouldRemoveExisting: false)
             
             if self.activeTasks.filter({ task -> Bool in
                 return task.state != .completed
@@ -124,17 +115,14 @@ extension NSXAuctionListingsViewModel {
             }
         }
     }
-/*
+
     /**
      Reload entries for all available timeFrame.
      */
     func reloadAll(completion: ((Date?) -> ())?) {
         for section in sections {
-            fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-                self.entries[section]!.removeAll()
-                self.entries[section]!.append(contentsOf: results.sorted(by: {
-                    return $0.auctionDate > $1.auctionDate
-                }))
+            fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
+                self.process(results, forSection: section, shouldRemoveExisting: true)
                 
                 if self.activeTasks.filter({ task -> Bool in
                     return task.state != .completed
@@ -145,10 +133,6 @@ extension NSXAuctionListingsViewModel {
                 }
             }
         }
-    }
-*/
-    func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
-        return fetchRecords(ofType: timeFrameType, offset: inventory.count, completion: completion)
     }
     
     
