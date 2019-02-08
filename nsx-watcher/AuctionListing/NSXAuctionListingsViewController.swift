@@ -11,8 +11,9 @@ import ARSLineProgress
 import RxSwift
 import RxCocoa
 
-class NSXAuctionListingsViewController: UITableViewController {
+class NSXAuctionListingsViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchDateRangeSegmentedControl: UISegmentedControl!
     @IBOutlet var lastFetchedTimeStampLabel: UILabel!
     
@@ -22,8 +23,6 @@ class NSXAuctionListingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = nil
-        tableView.delegate = nil
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
         
