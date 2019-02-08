@@ -28,17 +28,25 @@ class NSXAuctionListingsViewModel {
         .past: 0
     ]
     
-    lazy var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = {
-        var entries = Dictionary<WatcherAPI.TimeFrameType, [NSXEntry]>()
+//    lazy var entries: [WatcherAPI.TimeFrameType: [NSXEntry]] = {
+//        var entries = Dictionary<WatcherAPI.TimeFrameType, [NSXEntry]>()
+//        for section in self.sections {
+//            entries[section] = [NSXEntry]()
+//        }
+//        return entries
+//    }()
+    
+    lazy var entryCellViewModels: [WatcherAPI.TimeFrameType: [NSXAuctionListingCellViewModel]] = {
+        var vms = [WatcherAPI.TimeFrameType: [NSXAuctionListingCellViewModel]]()
         for section in self.sections {
-            entries[section] = [NSXEntry]()
+            vms[section] = [NSXAuctionListingCellViewModel]()
         }
-        return entries
+        return vms
     }()
     
-    var entriesForSelectedSection: [NSXEntry] {
-        guard let results = entries[selectedSearchTimeFrame] else {
-            return [NSXEntry]()
+    var entryCellViewModelsForSelectedSection: [NSXAuctionListingCellViewModel] {
+        guard let results = entryCellViewModels[selectedSearchTimeFrame] else {
+            return [NSXAuctionListingCellViewModel]()
         }
         return results
     }
@@ -46,7 +54,7 @@ class NSXAuctionListingsViewModel {
     var activeTasks = Set<URLSessionTask>()
     
     func canLoadMore(section: WatcherAPI.TimeFrameType) -> Bool {
-        return entries[section]!.count < entriesLoaded[section]!
+        return entryCellViewModels[section]!.count < entriesLoaded[section]!
     }
 }
 
@@ -74,10 +82,16 @@ extension NSXAuctionListingsViewModel {
     func reloadSection(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
         fetchRecords(ofType: section, inventory: [NSXEntry]()) { (results: [NSXEntry]) in
-            self.entries[section]!.removeAll()
-            self.entries[section]!.append(contentsOf: results.sorted(by: {
+            self.entryCellViewModels[section]!.removeAll()
+            
+            let sorted = results.sorted(by: {
                 return $0.auctionDate > $1.auctionDate
-            }))
+            })
+            
+            for entry in sorted {
+                let vm = NSXAuctionListingCellViewModel(entry)
+                self.entryCellViewModels[section]!.append(vm)
+            }
             
             if self.activeTasks.filter({ task -> Bool in
                 return task.state != .completed
@@ -91,10 +105,15 @@ extension NSXAuctionListingsViewModel {
     
     func loadMore(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
-        fetchRecords(ofType: section, offset: entries[section]!.count) { (results: [NSXEntry]) in
-            self.entries[section]!.append(contentsOf: results.sorted(by: {
+        fetchRecords(ofType: section, offset: entryCellViewModels[section]!.count) { (results: [NSXEntry]) in
+            let sorted = results.sorted(by: {
                 return $0.auctionDate > $1.auctionDate
-            }))
+            })
+            
+            for entry in sorted {
+                let vm = NSXAuctionListingCellViewModel(entry)
+                self.entryCellViewModels[section]!.append(vm)
+            }
             
             if self.activeTasks.filter({ task -> Bool in
                 return task.state != .completed
@@ -105,7 +124,7 @@ extension NSXAuctionListingsViewModel {
             }
         }
     }
-    
+/*
     /**
      Reload entries for all available timeFrame.
      */
@@ -127,7 +146,7 @@ extension NSXAuctionListingsViewModel {
             }
         }
     }
-    
+*/
     func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, inventory: [NSXEntry], completion: (([NSXEntry]) -> ())?) {
         return fetchRecords(ofType: timeFrameType, offset: inventory.count, completion: completion)
     }
@@ -140,14 +159,8 @@ extension NSXAuctionListingsViewModel {
         
         let task = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
             self.entriesLoaded[timeFrameType] = total
-            if let entries = entries {
-                if offset == 0 {
-                    self.entries[timeFrameType] = [NSXEntry]()
-                }
-                self.entries[timeFrameType]!.append(contentsOf: entries)
-            }
             if let completion = completion {
-                completion(self.entries[timeFrameType]!)
+                completion(entries!)
             }
         }, failure: nil)
         activeTasks.insert(task)

@@ -46,7 +46,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         }.disposed(by: disposeBag)
         
         tableView.rx.willDisplayCell.subscribe(onNext: { cell, indexPath in
-            if indexPath.row == self.viewModel.entriesForSelectedSection.count - 1 && self.viewModel.canLoadMore(section: self.viewModel.selectedSearchTimeFrame) {
+            if indexPath.row == self.viewModel.entryCellViewModelsForSelectedSection.count - 1 && self.viewModel.canLoadMore(section: self.viewModel.selectedSearchTimeFrame) {
                 self.loadMore()
             }
         }).disposed(by: disposeBag)
@@ -88,12 +88,7 @@ class NSXAuctionListingsViewController: UITableViewController {
     }
     
     func tableReload() {
-        var vms = [NSXAuctionListingCellViewModel]()
-        for item in viewModel.entriesForSelectedSection {
-            let vm = NSXAuctionListingCellViewModel(item)
-            vms.append(vm)
-        }
-        listings.accept(vms)
+        listings.accept(viewModel.entryCellViewModelsForSelectedSection)
     }
     
     // MARK: - IBActions
@@ -122,7 +117,7 @@ class NSXAuctionListingsViewController: UITableViewController {
         
         if segue.identifier == "CellSelectionSegue", let cell = sender as? NSXAuctionListingCell {
             if let indexPath = tableView.indexPath(for: cell), let vc = segue.destination as? WebViewController {
-                let entry = viewModel.entriesForSelectedSection[indexPath.row]
+                let entry = viewModel.entryCellViewModelsForSelectedSection[indexPath.row].entry
                 vc.entry = entry
             }
         }
