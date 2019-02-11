@@ -7,25 +7,20 @@
 //
 
 import UIKit
-import AFNetworking
+import Alamofire
 import HTMLKit
 
-class WatcherAPI: NSObject {
-    
-    lazy var manager: AFURLSessionManager = {
-        AFNetworkActivityIndicatorManager.shared().isEnabled = true
-        let config = URLSessionConfiguration.default
-        let manager = AFURLSessionManager(sessionConfiguration: config)
-        let serialiser = AFJSONResponseSerializer(readingOptions: .mutableContainers)
-        serialiser.acceptableContentTypes = Set(["application/json", "text/html"])
-        manager.responseSerializer = serialiser
-        return manager
-    }()
-    
+class WatcherAPI {
+
     enum TimeFrameType: String {
         case today = "Today"
         case past = "Past"
         case future = "Future"
+    }
+    
+    enum CarModelId: String {
+        case nsx = "604"
+        case civic = "567"
     }
     
     let url = "http://prestigemotorsport.com.au/wp-admin/admin-ajax.php"
@@ -38,80 +33,65 @@ class WatcherAPI: NSObject {
         "Accept": "application/json"
     ]
     
-    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) -> URLSessionTask {
-        
-        let request = AFJSONRequestSerializer(writingOptions: .prettyPrinted).request(withMethod: "POST", urlString: url, parameters: nil, error: nil)
-        
-        // Apply headers
-        for (key, val) in headers {
-            request.addValue(val, forHTTPHeaderField: key)
-        }
-        
+    
+    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) {
         var fields = [
             "action": "search_results_car_dev",
             "limit_start": "\(offset)",
             "auction-date": timeFrameType.rawValue,
             "marka_id": "5",
-//            "model_id": "604",    // NSX
-            "model_id": "567",   // Civic
+            "model_id": CarModelId.civic.rawValue,
             "year_from": "1989",
-//            "year_to": "2008",
             "year_to": "2011",
-        ]
+            ]
         if manualOnly {
             fields["transmissions"] = "Manual"
         }
         
-        let queryString = makeQueryString(with: fields)
-        request.httpBody = queryString.data(using: .utf8)
-        
-        let dataTask = manager.dataTask(with: request as URLRequest, completionHandler: { (response, responseObject, error) in
-            if let error = error {
+        Alamofire.request(url, method: .post, parameters: fields, encoding: URLEncoding.httpBody, headers: headers).responseJSON { response in
+            
+            if let error = response.error {
                 debugPrint("error = \(error)")
                 if let failure = failure {
                     failure(error)
                 }
-            } else {
-                if let json = responseObject as? [AnyHashable: Any] {
-                    var total = 0
-                    if let jsontotal = json["total"] as? Int {
-                        print("total = \(total)")
-                        total = jsontotal
-                    } else if let totalString = json["total"] as? String, let jsontotal = Int(totalString) {
-                        print("wtf man total is string: \(jsontotal)")
-                        total = jsontotal
+            } else if let json = response.result.value as? [AnyHashable: Any] {
+                print("JSON: \(json)") // serialized json response
+                
+                var total = 0
+                if let jsontotal = json["total"] as? Int {
+                    print("total = \(total)")
+                    total = jsontotal
+                } else if let totalString = json["total"] as? String, let jsontotal = Int(totalString) {
+                    print("wtf man total is string: \(jsontotal)")
+                    total = jsontotal
+                }
+
+                if total > 0, let carsHtml = json["cars_html"] as? String {
+                    let parser = HTMLParser(string: carsHtml)
+                    let context = HTMLElement(tagName: "jas-car-item")
+
+                    let nodes = parser.parseFragment(withContextElement: context)
+
+                    var entries = [NSXEntry]()
+                    for node in nodes {
+                        if let entry = NSXEntry(with: node) {
+                            entries.append(entry)
+                        }
                     }
-                    
-                    if total > 0, let carsHtml = json["cars_html"] as? String {
-                        let parser = HTMLParser(string: carsHtml)
-                        let context = HTMLElement(tagName: "jas-car-item")
-                        
-                        let nodes = parser.parseFragment(withContextElement: context)
-                        
-                        var entries = [NSXEntry]()
-                        for node in nodes {
-                            if let entry = NSXEntry(with: node) {
-                                entries.append(entry)
-                            }
-                        }
-                        debugPrint("End of process")
-                        if let success = success {
-                            success(total, entries)
-                        }
-                    } else {
-                        if let success = success {
-                            success(0, nil)
-                        }
+                    debugPrint("End of process")
+                    if let success = success {
+                        success(total, entries)
+                    }
+                } else {
+                    if let success = success {
+                        success(0, nil)
                     }
                 }
             }
-        })
-        
-        dataTask.resume()
-        return dataTask
+        }
     }
-    
-    
+
     func makeQueryString(with dictionary: [String: String]) -> String {
         var queryString = ""
         

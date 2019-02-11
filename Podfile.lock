@@ -1,19 +1,7 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - ARSLineProgress (3.0.0)
   - HTMLKit (2.1.5)
   - RxAtomic (4.4.0)
@@ -23,7 +11,8 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.1)
+  - Alamofire (= 4.8.1)
+  - AlamofireImage (~> 3.5)
   - ARSLineProgress (~> 3.0.0)
   - HTMLKit (~> 2.1.5)
   - RxCocoa (~> 4.4.0)
@@ -31,7 +20,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AFNetworking
+    - Alamofire
+    - AlamofireImage
     - ARSLineProgress
     - HTMLKit
     - RxAtomic
@@ -39,13 +29,14 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   ARSLineProgress: e6d1635325be8fdc3066513a15246c1330c77daf
   HTMLKit: 91dbd983c94f264c6ddea27d317f5a66368dd20b
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 8478df5f23066f84df1f84513492314d28e86874
+PODFILE CHECKSUM: 6022d1a72ffdfc1b05ba89c65bdcf8ee9364e7ba
 
 COCOAPODS: 1.6.0

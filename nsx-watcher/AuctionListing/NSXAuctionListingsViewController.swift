@@ -10,6 +10,7 @@ import UIKit
 import ARSLineProgress
 import RxSwift
 import RxCocoa
+import AlamofireImage
 
 class NSXAuctionListingsViewController: UIViewController {
     
@@ -38,7 +39,8 @@ class NSXAuctionListingsViewController: UIViewController {
             cell.startingBidLabel.text = vm.startingBidDisplayString
             
             if let url = vm.imageURL {
-                cell.carImageView.setImageWith(url, placeholderImage: cell.placeholderImage)
+//                cell.carImageView.setImageWith(url, placeholderImage: cell.placeholderImage)
+                cell.carImageView.af_setImage(withURL: url, placeholderImage: cell.placeholderImage)
             } else {
                 cell.carImageView.image = cell.placeholderImage
             }

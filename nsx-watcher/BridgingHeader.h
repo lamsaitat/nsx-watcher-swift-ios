@@ -9,7 +9,6 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-#import <AFNetworking/AFNetworking.h>
 #import <HTMLKit/HTMLKit.h>
 
 #endif /* BridgingHeader_h */

@@ -184,7 +184,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Mc7-Rg-chA">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u7y-vO-lpS">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u7y-vO-lpS">
                             <rect key="frame" x="125" y="7.6666666666666679" width="164" height="29.000000000000004"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -192,11 +192,14 @@
                                 <segment title="Today"/>
                                 <segment title="Past"/>
                             </segments>
+                            <connections>
+                                <action selector="searchDateRangeSegmentedControlValueChanged:" destination="RwW-qU-kEg" eventType="valueChanged" id="tjr-BY-Oad"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="lastFetchedTimeStampLabel" destination="ebV-pD-AxS" id="jHQ-88-tOo"/>
-                        <outlet property="searchDateRangeSegmentedControl" destination="u7y-vO-lpS" id="FX2-9i-HKm"/>
+                        <outlet property="searchDateRangeSegmentedControl" destination="u7y-vO-lpS" id="POY-M5-sVL"/>
                         <outlet property="tableView" destination="p7F-Jl-SxU" id="Qw9-3Y-k6k"/>
                     </connections>
                 </viewController>

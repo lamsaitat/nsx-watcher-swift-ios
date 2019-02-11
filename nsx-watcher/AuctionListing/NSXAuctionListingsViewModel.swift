@@ -43,8 +43,6 @@ class NSXAuctionListingsViewModel {
         return results
     }
     
-    var activeTasks = Set<URLSessionTask>()
-    
     func canLoadMore(section: WatcherAPI.TimeFrameType) -> Bool {
         return entryCellViewModels[section]!.count < entriesLoaded[section]!
     }
@@ -91,9 +89,7 @@ extension NSXAuctionListingsViewModel {
         fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
             self.process(results, forSection: section, shouldRemoveExisting: true)
             
-            if self.activeTasks.filter({ task -> Bool in
-                return task.state != .completed
-            }).isEmpty, let completion = completion {
+            if let completion = completion {
                 let now = Date()
                 self.lastLoadDates[self.selectedSearchTimeFrame] = now
                 completion(now)
@@ -106,9 +102,7 @@ extension NSXAuctionListingsViewModel {
         fetchRecords(ofType: section, offset: entryCellViewModels[section]!.count) { (results: [NSXEntry]) in
             self.process(results, forSection: section, shouldRemoveExisting: false)
             
-            if self.activeTasks.filter({ task -> Bool in
-                return task.state != .completed
-            }).isEmpty, let completion = completion {
+            if let completion = completion {
                 let now = Date()
                 self.lastLoadDates[self.selectedSearchTimeFrame] = now
                 completion(now)
@@ -124,9 +118,7 @@ extension NSXAuctionListingsViewModel {
             fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
                 self.process(results, forSection: section, shouldRemoveExisting: true)
                 
-                if self.activeTasks.filter({ task -> Bool in
-                    return task.state != .completed
-                }).isEmpty, let completion = completion {
+                if let completion = completion {
                     let now = Date()
                     self.lastLoadDates[self.selectedSearchTimeFrame] = now
                     completion(now)
@@ -141,12 +133,11 @@ extension NSXAuctionListingsViewModel {
      */
     func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, offset: Int, completion: (([NSXEntry]) -> ())?) {
         
-        let task = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
+        _ = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
             self.entriesLoaded[timeFrameType] = total
             if let completion = completion {
                 completion(entries!)
             }
         }, failure: nil)
-        activeTasks.insert(task)
     }
 }

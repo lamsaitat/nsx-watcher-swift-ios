@@ -6,7 +6,11 @@ target 'nsx-watcher' do
   use_frameworks!
 
   # Pods for nsx-watcher
-  pod 'AFNetworking', '~> 3.2.1'
+#  pod 'AFNetworking', '~> 3.2.1'
+  # No I'm not using a beta framework that is made as a public release.
+  pod 'Alamofire', '4.8.1'
+  pod 'AlamofireImage', '~> 3.5'
+
   pod 'HTMLKit', '~> 2.1.5', :inhibit_warnings => true
   pod 'ARSLineProgress', '~> 3.0.0'
   
