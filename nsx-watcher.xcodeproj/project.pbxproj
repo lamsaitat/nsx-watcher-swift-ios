@@ -19,6 +19,8 @@
 		6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */; };
 		6DDED5411F1DDC7100200FBB /* NSXAuctionListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */; };
 		CB005BF521913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */; };
+		CB0E20492213E0B800B7FAC6 /* NSXEntryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E20482213E0B800B7FAC6 /* NSXEntryModelTests.swift */; };
+		CB0E204B2213E96F00B7FAC6 /* SingleEntryHTMLBody.html in Resources */ = {isa = PBXBuildFile; fileRef = CB0E204A2213E96F00B7FAC6 /* SingleEntryHTMLBody.html */; };
 		CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB147FB82213A58B0044258C /* nsx_watcherTests.swift */; };
 		CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 		CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */; };
@@ -61,6 +63,8 @@
 		773FFE5BC55429D672C1F4FE /* Pods_nsx_watcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC69BCB8BA132EFC945ECFF9 /* Pods-nsx-watcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.release.xcconfig"; sourceTree = "<group>"; };
 		CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCellViewModel.swift; sourceTree = "<group>"; };
+		CB0E20482213E0B800B7FAC6 /* NSXEntryModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSXEntryModelTests.swift; sourceTree = "<group>"; };
+		CB0E204A2213E96F00B7FAC6 /* SingleEntryHTMLBody.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SingleEntryHTMLBody.html; sourceTree = "<group>"; };
 		CB147FB62213A58B0044258C /* nsx-watcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nsx-watcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB147FB82213A58B0044258C /* nsx_watcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsx_watcherTests.swift; sourceTree = "<group>"; };
 		CB147FBA2213A58B0044258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			children = (
 				CB147FC72213A97E0044258C /* SampleJsons */,
 				CB147FB82213A58B0044258C /* nsx_watcherTests.swift */,
+				CB0E20482213E0B800B7FAC6 /* NSXEntryModelTests.swift */,
 				CB147FBA2213A58B0044258C /* Info.plist */,
 			);
 			path = "nsx-watcherTests";
@@ -176,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				CB147FC52213A97A0044258C /* sample-json-response-complete.json */,
+				CB0E204A2213E96F00B7FAC6 /* SingleEntryHTMLBody.html */,
 			);
 			path = SampleJsons;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB0E204B2213E96F00B7FAC6 /* SingleEntryHTMLBody.html in Resources */,
 				CB147FC62213A97A0044258C /* sample-json-response-complete.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +448,7 @@
 			files = (
 				CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */,
 				CB147FC32213A6410044258C /* NSXEntry.swift in Sources */,
+				CB0E20492213E0B800B7FAC6 /* NSXEntryModelTests.swift in Sources */,
 				CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */,
 				CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */,
 				CB147FCA2213ACBA0044258C /* HTMLNodeParser.swift in Sources */,

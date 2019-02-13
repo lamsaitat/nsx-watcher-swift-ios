@@ -11,6 +11,21 @@ import HTMLKit
 
 class HTMLNodeParser {
     
+    static func dictionaries(from carsHtml: String) -> [[AnyHashable: Any]] {
+        let parser = HTMLParser(string: carsHtml)
+        let context = HTMLElement(tagName: "jas-car-item")
+        
+        let nodes = parser.parseFragment(withContextElement: context)
+        
+        var entries = [[AnyHashable: Any]]()
+        for node in nodes {
+            if let dictionary = HTMLNodeParser.dictionary(from: node) {
+                entries.append(dictionary)
+            }
+        }
+        return entries
+    }
+    
     static func dictionary(from htmlNode: HTMLNode) -> [AnyHashable: Any]? {
         var dictionary = [AnyHashable: Any]()
         guard let childNodes = htmlNode.childNodes.array as? [HTMLElement] else {

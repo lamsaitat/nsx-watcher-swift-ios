@@ -56,54 +56,27 @@ class WatcherAPI {
                     failure(error)
                 }
             } else if let json = response.result.value as? [AnyHashable: Any] {
-                print("JSON: \(json)") // serialized json response
-                
                 var total = 0
                 if let jsontotal = json["total"] as? Int {
-                    print("total = \(total)")
                     total = jsontotal
                 } else if let totalString = json["total"] as? String, let jsontotal = Int(totalString) {
-                    print("wtf man total is string: \(jsontotal)")
                     total = jsontotal
                 }
 
+                var entries = [NSXEntry]()
                 if total > 0, let carsHtml = json["cars_html"] as? String {
-                    let parser = HTMLParser(string: carsHtml)
-                    let context = HTMLElement(tagName: "jas-car-item")
+                    let dicts = HTMLNodeParser.dictionaries(from: carsHtml)
 
-                    let nodes = parser.parseFragment(withContextElement: context)
-
-                    var entries = [NSXEntry]()
-                    for node in nodes {
-                        
-                        if let dictionary = HTMLNodeParser.dictionary(from: node), let entry = NSXEntry(with: dictionary) {
+                    for dictionary in dicts {
+                        if let entry = NSXEntry(with: dictionary) {
                             entries.append(entry)
                         }
                     }
-                    debugPrint("End of process")
-                    if let success = success {
-                        success(total, entries)
-                    }
-                } else {
-                    if let success = success {
-                        success(0, nil)
-                    }
+                }
+                if let success = success {
+                    success(total, entries)
                 }
             }
         }
     }
-
-    func makeQueryString(with dictionary: [String: String]) -> String {
-        var queryString = ""
-        
-        for (key, val) in dictionary {
-            if queryString.isEmpty == false {
-                queryString += "&"
-            }
-            queryString += key + "=" + val
-        }
-        
-        return queryString
-    }
-    
 }
