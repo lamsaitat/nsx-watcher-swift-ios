@@ -23,6 +23,8 @@
 		CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 		CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */; };
 		CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */; };
+		CB147FC32213A6410044258C /* NSXEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53C1F1C888800200FBB /* NSXEntry.swift */; };
+		CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */; };
 		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
 		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -421,7 +423,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */,
+				CB147FC32213A6410044258C /* NSXEntry.swift in Sources */,
 				CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */,
+				CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */,
 				CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */,
 				CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */,
 			);
