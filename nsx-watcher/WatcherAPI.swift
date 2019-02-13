@@ -75,7 +75,8 @@ class WatcherAPI {
 
                     var entries = [NSXEntry]()
                     for node in nodes {
-                        if let entry = NSXEntry(with: node) {
+                        
+                        if let dictionary = HTMLNodeParser.dictionary(from: node), let entry = NSXEntry(with: dictionary) {
                             entries.append(entry)
                         }
                     }

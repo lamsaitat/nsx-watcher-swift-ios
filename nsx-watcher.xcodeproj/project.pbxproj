@@ -25,6 +25,9 @@
 		CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */; };
 		CB147FC32213A6410044258C /* NSXEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53C1F1C888800200FBB /* NSXEntry.swift */; };
 		CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */; };
+		CB147FC62213A97A0044258C /* sample-json-response-complete.json in Resources */ = {isa = PBXBuildFile; fileRef = CB147FC52213A97A0044258C /* sample-json-response-complete.json */; };
+		CB147FC92213ACBA0044258C /* HTMLNodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB147FC82213ACBA0044258C /* HTMLNodeParser.swift */; };
+		CB147FCA2213ACBA0044258C /* HTMLNodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB147FC82213ACBA0044258C /* HTMLNodeParser.swift */; };
 		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
 		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +64,8 @@
 		CB147FB62213A58B0044258C /* nsx-watcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nsx-watcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB147FB82213A58B0044258C /* nsx_watcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsx_watcherTests.swift; sourceTree = "<group>"; };
 		CB147FBA2213A58B0044258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB147FC52213A97A0044258C /* sample-json-response-complete.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "sample-json-response-complete.json"; sourceTree = "<group>"; };
+		CB147FC82213ACBA0044258C /* HTMLNodeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLNodeParser.swift; sourceTree = "<group>"; };
 		CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCell.swift; sourceTree = "<group>"; };
 		CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewModel.swift; sourceTree = "<group>"; };
 		DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				6DDED53C1F1C888800200FBB /* NSXEntry.swift */,
+				CB147FC82213ACBA0044258C /* HTMLNodeParser.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -159,10 +165,19 @@
 		CB147FB72213A58B0044258C /* nsx-watcherTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB147FC72213A97E0044258C /* SampleJsons */,
 				CB147FB82213A58B0044258C /* nsx_watcherTests.swift */,
 				CB147FBA2213A58B0044258C /* Info.plist */,
 			);
 			path = "nsx-watcherTests";
+			sourceTree = "<group>";
+		};
+		CB147FC72213A97E0044258C /* SampleJsons */ = {
+			isa = PBXGroup;
+			children = (
+				CB147FC52213A97A0044258C /* sample-json-response-complete.json */,
+			);
+			path = SampleJsons;
 			sourceTree = "<group>";
 		};
 		D1784A13697B044399DA2534 /* Frameworks */ = {
@@ -275,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB147FC62213A97A0044258C /* sample-json-response-complete.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +431,7 @@
 				6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */,
 				CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */,
 				6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */,
+				CB147FC92213ACBA0044258C /* HTMLNodeParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +443,7 @@
 				CB147FC32213A6410044258C /* NSXEntry.swift in Sources */,
 				CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */,
 				CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */,
+				CB147FCA2213ACBA0044258C /* HTMLNodeParser.swift in Sources */,
 				CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */,
 				CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */,
 			);
