@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DE73A63B05CB3F528077BEB /* Pods_nsx_watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */; };
+		36D92DD9FFB91A6B96635356 /* Pods_nsx_watcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 773FFE5BC55429D672C1F4FE /* Pods_nsx_watcherTests.framework */; };
 		6DD2045A1F1C41C400E67728 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD204591F1C41C400E67728 /* AppDelegate.swift */; };
 		6DD2045C1F1C41C400E67728 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2045B1F1C41C400E67728 /* WebViewController.swift */; };
 		6DD2045F1F1C41C400E67728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2045D1F1C41C400E67728 /* Main.storyboard */; };
@@ -18,12 +19,27 @@
 		6DDED53F1F1DD78100200FBB /* URLComponents+queryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */; };
 		6DDED5411F1DDC7100200FBB /* NSXAuctionListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */; };
 		CB005BF521913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */; };
+		CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB147FB82213A58B0044258C /* nsx_watcherTests.swift */; };
+		CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
+		CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */; };
+		CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDED5231F1C50DD00200FBB /* WatcherAPI.swift */; };
 		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
 		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CB147FBB2213A58B0044258C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DD2044E1F1C41C400E67728 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DD204551F1C41C400E67728;
+			remoteInfo = "nsx-watcher";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1770EC37486B800D1326F389 /* Pods-nsx-watcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.debug.xcconfig"; sourceTree = "<group>"; };
+		2E520886264888D7E156C3FC /* Pods-nsx-watcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DD204561F1C41C400E67728 /* nsx-watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nsx-watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD204591F1C41C400E67728 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD2045B1F1C41C400E67728 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -37,11 +53,16 @@
 		6DDED53C1F1C888800200FBB /* NSXEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXEntry.swift; sourceTree = "<group>"; };
 		6DDED53E1F1DD78100200FBB /* URLComponents+queryItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLComponents+queryItems.swift"; sourceTree = "<group>"; };
 		6DDED5401F1DDC7100200FBB /* NSXAuctionListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewController.swift; sourceTree = "<group>"; };
+		773FFE5BC55429D672C1F4FE /* Pods_nsx_watcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC69BCB8BA132EFC945ECFF9 /* Pods-nsx-watcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher.release.xcconfig"; sourceTree = "<group>"; };
 		CB005BF421913A9B005F4CEE /* NSXAuctionListingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCellViewModel.swift; sourceTree = "<group>"; };
+		CB147FB62213A58B0044258C /* nsx-watcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nsx-watcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB147FB82213A58B0044258C /* nsx_watcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsx_watcherTests.swift; sourceTree = "<group>"; };
+		CB147FBA2213A58B0044258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCell.swift; sourceTree = "<group>"; };
 		CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewModel.swift; sourceTree = "<group>"; };
 		DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE9B78342A6042859714183 /* Pods-nsx-watcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +74,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB147FB32213A58B0044258C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D92DD9FFB91A6B96635356 /* Pods_nsx_watcherTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +90,8 @@
 			children = (
 				1770EC37486B800D1326F389 /* Pods-nsx-watcher.debug.xcconfig */,
 				AC69BCB8BA132EFC945ECFF9 /* Pods-nsx-watcher.release.xcconfig */,
+				2E520886264888D7E156C3FC /* Pods-nsx-watcherTests.debug.xcconfig */,
+				DCE9B78342A6042859714183 /* Pods-nsx-watcherTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -69,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD204581F1C41C400E67728 /* nsx-watcher */,
+				CB147FB72213A58B0044258C /* nsx-watcherTests */,
 				6DD204571F1C41C400E67728 /* Products */,
 				6DD2046E1F1C41FC00E67728 /* README.md */,
 				1DA91EC3EA0005D050DB44B5 /* Pods */,
@@ -80,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD204561F1C41C400E67728 /* nsx-watcher.app */,
+				CB147FB62213A58B0044258C /* nsx-watcherTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,10 +154,20 @@
 			path = AuctionListing;
 			sourceTree = "<group>";
 		};
+		CB147FB72213A58B0044258C /* nsx-watcherTests */ = {
+			isa = PBXGroup;
+			children = (
+				CB147FB82213A58B0044258C /* nsx_watcherTests.swift */,
+				CB147FBA2213A58B0044258C /* Info.plist */,
+			);
+			path = "nsx-watcherTests";
+			sourceTree = "<group>";
+		};
 		D1784A13697B044399DA2534 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */,
+				773FFE5BC55429D672C1F4FE /* Pods_nsx_watcherTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,13 +195,33 @@
 			productReference = 6DD204561F1C41C400E67728 /* nsx-watcher.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CB147FB52213A58B0044258C /* nsx-watcherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB147FBF2213A58B0044258C /* Build configuration list for PBXNativeTarget "nsx-watcherTests" */;
+			buildPhases = (
+				463CD8A92FD84D9BAF29E68D /* [CP] Check Pods Manifest.lock */,
+				CB147FB22213A58B0044258C /* Sources */,
+				CB147FB32213A58B0044258C /* Frameworks */,
+				CB147FB42213A58B0044258C /* Resources */,
+				C6E9E426C1ECAE0AE1209C2B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB147FBC2213A58B0044258C /* PBXTargetDependency */,
+			);
+			name = "nsx-watcherTests";
+			productName = "nsx-watcherTests";
+			productReference = CB147FB62213A58B0044258C /* nsx-watcherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6DD2044E1F1C41C400E67728 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Henshin Soft Pty Ltd";
 				TargetAttributes = {
@@ -167,6 +230,12 @@
 						DevelopmentTeam = 5U8WFJ5LAS;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
+					};
+					CB147FB52213A58B0044258C = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 5U8WFJ5LAS;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6DD204551F1C41C400E67728;
 					};
 				};
 			};
@@ -184,6 +253,7 @@
 			projectRoot = "";
 			targets = (
 				6DD204551F1C41C400E67728 /* nsx-watcher */,
+				CB147FB52213A58B0044258C /* nsx-watcherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,9 +269,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB147FB42213A58B0044258C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		463CD8A92FD84D9BAF29E68D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nsx-watcherTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5F9DF2B1BA98B83A79DC3EB2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +329,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nsx-watcher/Pods-nsx-watcher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6E9E426C1ECAE0AE1209C2B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ARSLineProgress/ARSLineProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HTMLKit/HTMLKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARSLineProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CBE183A31F1EEF1F00D8E65E /* Increment build number */ = {
@@ -283,7 +416,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB147FB22213A58B0044258C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB147FC12213A59B0044258C /* NSXAuctionListingCellViewModel.swift in Sources */,
+				CB147FB92213A58B0044258C /* nsx_watcherTests.swift in Sources */,
+				CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */,
+				CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB147FBC2213A58B0044258C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DD204551F1C41C400E67728 /* nsx-watcher */;
+			targetProxy = CB147FBB2213A58B0044258C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6DD2045D1F1C41C400E67728 /* Main.storyboard */ = {
@@ -454,6 +606,55 @@
 			};
 			name = Release;
 		};
+		CB147FBD2213A58B0044258C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E520886264888D7E156C3FC /* Pods-nsx-watcherTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5U8WFJ5LAS;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "nsx-watcherTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.henshin.learning.nsx-watcherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nsx-watcher.app/nsx-watcher";
+			};
+			name = Debug;
+		};
+		CB147FBE2213A58B0044258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCE9B78342A6042859714183 /* Pods-nsx-watcherTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5U8WFJ5LAS;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "nsx-watcherTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.henshin.learning.nsx-watcherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nsx-watcher.app/nsx-watcher";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -471,6 +672,15 @@
 			buildConfigurations = (
 				6DD2046C1F1C41C400E67728 /* Debug */,
 				6DD2046D1F1C41C400E67728 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB147FBF2213A58B0044258C /* Build configuration list for PBXNativeTarget "nsx-watcherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB147FBD2213A58B0044258C /* Debug */,
+				CB147FBE2213A58B0044258C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -17,3 +17,17 @@ target 'nsx-watcher' do
   pod 'RxSwift', '~> 4.4.0'
   pod 'RxCocoa', '~> 4.4.0'
 end
+
+
+target 'nsx-watcherTests' do
+  use_frameworks!
+  
+  pod 'Alamofire', '4.8.1'
+  pod 'AlamofireImage', '~> 3.5'
+  
+  pod 'HTMLKit', '~> 2.1.5', :inhibit_warnings => true
+  pod 'ARSLineProgress', '~> 3.0.0'
+  
+  pod 'RxSwift', '~> 4.4.0'
+  pod 'RxCocoa', '~> 4.4.0'
+end
