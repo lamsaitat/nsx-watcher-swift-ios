@@ -33,5 +33,19 @@ class ListingModelTests: XCTestCase {
         let entry = Listing(with: dictionary)
         
         XCTAssertNotNil(entry)
+        
+        XCTAssertEqual(entry!.carId, "YMFvtbBai4gjUZ")
+        XCTAssertEqual(entry!.detailPageUrlString, "http://prestigemotorsport.com.au/auction-vehicle-display/?car_id=YMFvtbBai4gjUZ")
+        
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        XCTAssertEqual(df.string(from: entry!.auctionDate), "14-02-2019")
+        
+        XCTAssertEqual(entry!.auctionLocation, "JU Gunma")
+        XCTAssertEqual(entry!.auctionPriceString, "230,000 YEN")
+        
+        // Optionals
+        XCTAssertNotNil(entry!.imageUrl)
+        XCTAssertEqual(entry!.imageUrl!, "https://8.ajes.com/imgs/c5At9Pmx48mHVSbCrEbV36xWOo2DM6IOA75Ld5AndBVzDLI&w=320")
     }
 }
