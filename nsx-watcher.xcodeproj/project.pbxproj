@@ -31,6 +31,7 @@
 		CB147FCA2213ACBA0044258C /* JasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB147FC82213ACBA0044258C /* JasParser.swift */; };
 		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
 		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
+		CBFC59BF2214F3D800B5206F /* JasParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFC59BE2214F3D800B5206F /* JasParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		CB147FC82213ACBA0044258C /* JasParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasParser.swift; sourceTree = "<group>"; };
 		CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCell.swift; sourceTree = "<group>"; };
 		CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewModel.swift; sourceTree = "<group>"; };
+		CBFC59BE2214F3D800B5206F /* JasParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasParserTests.swift; sourceTree = "<group>"; };
 		DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE9B78342A6042859714183 /* Pods-nsx-watcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +171,7 @@
 			children = (
 				CB147FC72213A97E0044258C /* SampleJsons */,
 				CB0E20482213E0B800B7FAC6 /* ListingModelTests.swift */,
+				CBFC59BE2214F3D800B5206F /* JasParserTests.swift */,
 				CB147FBA2213A58B0044258C /* Info.plist */,
 			);
 			path = "nsx-watcherTests";
@@ -448,6 +451,7 @@
 				CB0E20492213E0B800B7FAC6 /* ListingModelTests.swift in Sources */,
 				CB147FC42213A6570044258C /* URLComponents+queryItems.swift in Sources */,
 				CB147FCA2213ACBA0044258C /* JasParser.swift in Sources */,
+				CBFC59BF2214F3D800B5206F /* JasParserTests.swift in Sources */,
 				CB147FC02213A5970044258C /* NSXAuctionListingsViewModel.swift in Sources */,
 				CB147FC22213A59E0044258C /* WatcherAPI.swift in Sources */,
 			);

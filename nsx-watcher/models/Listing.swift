@@ -38,11 +38,11 @@ struct Listing {
 
 extension Listing {
     init?(with dictionary: [AnyHashable: Any]) {
-        guard let htmlBody = dictionary["htmlBody"] as? String,
-            let auctionDate = dictionary["auctionDate"] as? Date,
-            let auctionLocation = dictionary["auctionLocation"] as? String,
-            let auctionPriceString = dictionary["auctionPriceString"] as? String,
-            let detailPageUrl = dictionary["detailPageUrl"] as? String
+        guard let htmlBody = dictionary[JasParser.Key.htmlBody] as? String,
+            let auctionDate = dictionary[JasParser.Key.auctionDate] as? Date,
+            let auctionLocation = dictionary[JasParser.Key.auctionLocation] as? String,
+            let auctionPriceString = dictionary[JasParser.Key.auctionPriceString] as? String,
+            let detailPageUrl = dictionary[JasParser.Key.detailPageUrl] as? String
             else {
                 return nil
         }
@@ -52,12 +52,12 @@ extension Listing {
         self.auctionPriceString = auctionPriceString
         self.detailPageUrlString = detailPageUrl
         
-        carId = dictionary["carId"] as? String
-        title = dictionary["title"] as? String
-        displacement = dictionary["displacement"] as? String
-        gradeString = dictionary["gradeString"] as? String
-        imageUrl = dictionary["imageUrl"] as? String
-        mileage = dictionary["mileage"] as? String
-        transmission = dictionary["transmission"] as? String
+        carId = dictionary[JasParser.Key.carId] as? String
+        title = dictionary[JasParser.Key.title] as? String
+        displacement = dictionary[JasParser.Key.displacement] as? String
+        gradeString = dictionary[JasParser.Key.gradeString] as? String
+        imageUrl = dictionary[JasParser.Key.imageUrl] as? String
+        mileage = dictionary[JasParser.Key.mileage] as? String
+        transmission = dictionary[JasParser.Key.transmission] as? String
     }
 }

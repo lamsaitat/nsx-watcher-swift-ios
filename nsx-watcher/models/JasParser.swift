@@ -11,6 +11,22 @@ import HTMLKit
 
 class JasParser {
     
+    struct Key {
+        static let htmlBody = "htmlBody"
+        static let auctionDate = "auctionDate"
+        static let auctionLocation = "auctionLocation"
+        static let auctionPriceString = "auctionPriceString"
+        static let detailPageUrl = "detailPageUrl"
+        
+        static let carId = "carId"
+        static let title = "title"
+        static let displacement = "displacement"
+        static let gradeString = "gradeString"
+        static let imageUrl = "imageUrl"
+        static let mileage = "mileage"
+        static let transmission = "transmission"
+    }
+    
     static func dictionaries(from carsHtml: String) -> [[AnyHashable: Any]] {
         let parser = HTMLParser(string: carsHtml)
         let context = HTMLElement(tagName: "jas-car-item")
@@ -33,7 +49,7 @@ class JasParser {
             return dictionary
         }
         
-        dictionary["htmlBody"] = htmlNode.outerHTML
+        dictionary[Key.htmlBody] = htmlNode.outerHTML
         
         for htmlChild in childNodes {
             if htmlChild.className == "jas-car-item-content", let contentChildNodes = htmlChild.childNodes.array as? [HTMLElement] {
@@ -44,27 +60,27 @@ class JasParser {
                             let auctionDateSpanString = endNode.textContent.trimWhitespaces()
                             // Auction date
                             if auctionDateSpanString.lowercased().contains("today") {
-                                dictionary["auctionDate"] = NSDate()
+                                dictionary[Key.auctionDate] = NSDate()
                             } else {
                                 let df = DateFormatter()
                                 df.dateFormat = Listing.auctionDateFormat
                                 if let date = df.date(from: auctionDateSpanString) {
-                                    dictionary["auctionDate"] = date
+                                    dictionary[Key.auctionDate] = date
                                 }
                             }
                         } else {
                             // Auction location
-                            dictionary["auctionLocation"] = contentChildNode.innerHTML
+                            dictionary[Key.auctionLocation] = contentChildNode.innerHTML
                         }
                     } else if contentChildNode.tagName == "ul", let nodes = contentChildNode.childNodes.array as? [HTMLElement] {
                         for (idx, li) in nodes.enumerated() {
                             let content = li.textContent.trimWhitespaces()
                             if idx == 0 || content.hasSuffix("cc") {
-                                dictionary["displacement"] = content
+                                dictionary[Key.displacement] = content
                             } else if idx == 1 {
-                                dictionary["transmission"] = content
+                                dictionary[Key.transmission] = content
                             } else if idx == 2 {
-                                dictionary["mileage"] = content
+                                dictionary[Key.mileage] = content
                             } else if idx == 3 {
                                 let tns = li.childNodes.filter({ cn -> Bool in
                                     return cn is HTMLText
@@ -72,7 +88,7 @@ class JasParser {
                                 for tn in tns {
                                     let gradeString = tn.textContent.trimWhitespaces()
                                     if gradeString.hasPrefix("Grade") {
-                                        dictionary["gradeString"] = gradeString
+                                        dictionary[Key.gradeString] = gradeString
                                         break
                                     }
                                 }
@@ -80,26 +96,26 @@ class JasParser {
                         }
                     } else if contentChildNode.tagName == "a" {
                         if let href = contentChildNode.attributes["href"] as? String {
-                            dictionary["detailPageUrl"] = href
+                            dictionary[Key.detailPageUrl] = href
                         }
                     } else if contentChildNode.tagName == "h5" {
-                        dictionary["title"] = contentChildNode.textContent.trimWhitespaces()
+                        dictionary[Key.title] = contentChildNode.textContent.trimWhitespaces()
                     }
                 }
             } else if htmlChild.className == "jas-price", let priceNode = htmlChild.firstChild, let nodes = priceNode.childNodes.array as? [HTMLElement] {
                 for node in nodes {
                     if node.tagName == "a", let href = node.attributes["href"] as? String {
-                        dictionary["detailPageUrl"] = href
+                        dictionary[Key.detailPageUrl] = href
                     } else if node.tagName == "h6" {
-                        dictionary["auctionPriceString"] = node.textContent.trimWhitespaces()
+                        dictionary[Key.auctionPriceString] = node.textContent.trimWhitespaces()
                     }
                 }
             } else if htmlChild.tagName == "a", let imgChild = htmlChild.firstChild as? HTMLElement, let imgUrl = imgChild.attributes["src"] as? String {
-                dictionary["imageUrl"] = imgUrl
+                dictionary[Key.imageUrl] = imgUrl
                 
                 if let href = htmlChild.attributes["href"] as? String, let urlComponents = URLComponents(string: href), let queryDict = urlComponents.queryDictionary, let uid = queryDict["car_id"] as? String {
-                    dictionary["detailPageUrl"] = href
-                    dictionary["carId"] = uid
+                    dictionary[Key.detailPageUrl] = href
+                    dictionary[Key.carId] = uid
                 }
             }
         }
