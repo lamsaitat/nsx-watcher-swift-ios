@@ -32,6 +32,7 @@
 		CBE183A01F1EE12800D8E65E /* NSXAuctionListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */; };
 		CBE183A21F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */; };
 		CBFC59BF2214F3D800B5206F /* JasParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFC59BE2214F3D800B5206F /* JasParserTests.swift */; };
+		CBFC59C1221507E600B5206F /* sample-json-response-corrupted-entry.json in Resources */ = {isa = PBXBuildFile; fileRef = CBFC59C0221507E600B5206F /* sample-json-response-corrupted-entry.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		CBE1839F1F1EE12800D8E65E /* NSXAuctionListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingCell.swift; sourceTree = "<group>"; };
 		CBE183A11F1EE14B00D8E65E /* NSXAuctionListingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXAuctionListingsViewModel.swift; sourceTree = "<group>"; };
 		CBFC59BE2214F3D800B5206F /* JasParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasParserTests.swift; sourceTree = "<group>"; };
+		CBFC59C0221507E600B5206F /* sample-json-response-corrupted-entry.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "sample-json-response-corrupted-entry.json"; sourceTree = "<group>"; };
 		DC599F112260A177FD02D6E5 /* Pods_nsx_watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nsx_watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE9B78342A6042859714183 /* Pods-nsx-watcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nsx-watcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nsx-watcherTests/Pods-nsx-watcherTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +184,7 @@
 			children = (
 				CB147FC52213A97A0044258C /* sample-json-response-complete.json */,
 				CB0E204C2213F02600B7FAC6 /* sample-json-response-complete-single-entry.json */,
+				CBFC59C0221507E600B5206F /* sample-json-response-corrupted-entry.json */,
 			);
 			path = SampleJsons;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBFC59C1221507E600B5206F /* sample-json-response-corrupted-entry.json in Resources */,
 				CB0E204D2213F02600B7FAC6 /* sample-json-response-complete-single-entry.json in Resources */,
 				CB147FC62213A97A0044258C /* sample-json-response-complete.json in Resources */,
 			);

@@ -10,7 +10,10 @@ import XCTest
 
 
 class ListingModelTests: XCTestCase {
-
+    lazy var bundle: Bundle = {
+        return Bundle(for: type(of: self))
+    }()
+    
     override func setUp() {
         
     }
@@ -20,7 +23,6 @@ class ListingModelTests: XCTestCase {
     }
 
     func testSingleEntryCreation() {
-        let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: "sample-json-response-complete-single-entry", withExtension: "json")!
         let json = try! JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as! [AnyHashable: Any]
         
@@ -47,5 +49,19 @@ class ListingModelTests: XCTestCase {
         // Optionals
         XCTAssertNotNil(entry!.imageUrl)
         XCTAssertEqual(entry!.imageUrl!, "https://8.ajes.com/imgs/c5At9Pmx48mHVSbCrEbV36xWOo2DM6IOA75Ld5AndBVzDLI&w=320")
+    }
+    
+    func testCorruptedEntry() {
+        let url = bundle.url(forResource: "sample-json-response-corrupted-entry", withExtension: "json")!
+        let json = try! JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as! [AnyHashable: Any]
+        
+        let carsHtml = json["cars_html"] as! String
+        let dicts = JasParser.dictionaries(from: carsHtml)
+        
+        XCTAssertTrue(dicts.count == 1)
+        let dictionary = dicts.first!
+        let entry = Listing(with: dictionary)
+        
+        XCTAssertNil(entry)
     }
 }
