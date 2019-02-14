@@ -9,15 +9,15 @@
 import UIKit
 
 class NSXAuctionListingCellViewModel {
-    let entry: NSXEntry
+    let entry: Listing
     
-    required init(_ entry: NSXEntry) {
+    required init(_ entry: Listing) {
         self.entry = entry
     }
     
     lazy var auctionDateFormatter: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = NSXEntry.auctionDateFormat
+        df.dateFormat = Listing.auctionDateFormat
         return df
     }()
 }

@@ -9,7 +9,7 @@
 import Foundation
 import HTMLKit
 
-class HTMLNodeParser {
+class JasParser {
     
     static func dictionaries(from carsHtml: String) -> [[AnyHashable: Any]] {
         let parser = HTMLParser(string: carsHtml)
@@ -19,7 +19,7 @@ class HTMLNodeParser {
         
         var entries = [[AnyHashable: Any]]()
         for node in nodes {
-            if let dictionary = HTMLNodeParser.dictionary(from: node) {
+            if let dictionary = dictionary(from: node) {
                 entries.append(dictionary)
             }
         }
@@ -47,7 +47,7 @@ class HTMLNodeParser {
                                 dictionary["auctionDate"] = NSDate()
                             } else {
                                 let df = DateFormatter()
-                                df.dateFormat = NSXEntry.auctionDateFormat
+                                df.dateFormat = Listing.auctionDateFormat
                                 if let date = df.date(from: auctionDateSpanString) {
                                     dictionary["auctionDate"] = date
                                 }

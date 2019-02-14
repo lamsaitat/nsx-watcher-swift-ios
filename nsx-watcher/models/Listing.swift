@@ -1,5 +1,5 @@
 //
-//  NSXEntry+CoreDataMethods.swift
+//  Listing.swift
 //  nsx-watcher
 //
 //  Created by Kelvin Lam on 17/7/17.
@@ -10,7 +10,7 @@ import Foundation
 import HTMLKit
 
 
-struct NSXEntry {
+struct Listing {
     static let auctionDateFormat = "dd-MM-yyyy"
     
     let auctionLocation: String
@@ -36,7 +36,7 @@ struct NSXEntry {
 }
 
 
-extension NSXEntry {
+extension Listing {
     init?(with dictionary: [AnyHashable: Any]) {
         guard let htmlBody = dictionary["htmlBody"] as? String,
             let auctionDate = dictionary["auctionDate"] as? Date,

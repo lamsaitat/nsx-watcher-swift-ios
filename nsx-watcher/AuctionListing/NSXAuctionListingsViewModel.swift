@@ -67,7 +67,7 @@ extension NSXAuctionListingsViewModel {
 // MARK: - API call methods
 extension NSXAuctionListingsViewModel {
     
-    private func process(_ entries: [NSXEntry], forSection section: WatcherAPI.TimeFrameType, shouldRemoveExisting: Bool) {
+    private func process(_ entries: [Listing], forSection section: WatcherAPI.TimeFrameType, shouldRemoveExisting: Bool) {
         if shouldRemoveExisting {
             entryCellViewModels[section]!.removeAll()
         }
@@ -86,7 +86,7 @@ extension NSXAuctionListingsViewModel {
     */
     func reloadSection(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
-        fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
+        fetchRecords(ofType: section, offset: 0) { (results: [Listing]) in
             self.process(results, forSection: section, shouldRemoveExisting: true)
             
             if let completion = completion {
@@ -99,7 +99,7 @@ extension NSXAuctionListingsViewModel {
     
     func loadMore(completion: ((Date?) -> ())?) {
         let section = selectedSearchTimeFrame
-        fetchRecords(ofType: section, offset: entryCellViewModels[section]!.count) { (results: [NSXEntry]) in
+        fetchRecords(ofType: section, offset: entryCellViewModels[section]!.count) { (results: [Listing]) in
             self.process(results, forSection: section, shouldRemoveExisting: false)
             
             if let completion = completion {
@@ -115,7 +115,7 @@ extension NSXAuctionListingsViewModel {
      */
     func reloadAll(completion: ((Date?) -> ())?) {
         for section in sections {
-            fetchRecords(ofType: section, offset: 0) { (results: [NSXEntry]) in
+            fetchRecords(ofType: section, offset: 0) { (results: [Listing]) in
                 self.process(results, forSection: section, shouldRemoveExisting: true)
                 
                 if let completion = completion {
@@ -131,9 +131,9 @@ extension NSXAuctionListingsViewModel {
     /**
      * Allows for paginated fetch.
      */
-    func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, offset: Int, completion: (([NSXEntry]) -> ())?) {
+    func fetchRecords(ofType timeFrameType: WatcherAPI.TimeFrameType, offset: Int, completion: (([Listing]) -> ())?) {
         
-        _ = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [NSXEntry]?) in
+        _ = api.fetchNSXAuctionRecords(timeFrameType: timeFrameType, offset: offset, manualOnly: true, success: { (total: Int, entries: [Listing]?) in
             self.entriesLoaded[timeFrameType] = total
             if let completion = completion {
                 completion(entries!)

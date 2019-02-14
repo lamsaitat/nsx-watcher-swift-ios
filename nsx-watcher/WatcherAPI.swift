@@ -34,7 +34,7 @@ class WatcherAPI {
     ]
     
     
-    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [NSXEntry]?) -> ())?, failure: ((Error?) -> ())?) {
+    func fetchNSXAuctionRecords(timeFrameType: TimeFrameType, offset: Int, manualOnly: Bool, success: ((Int, [Listing]?) -> ())?, failure: ((Error?) -> ())?) {
         var fields = [
             "action": "search_results_car_dev",
             "limit_start": "\(offset)",
@@ -63,12 +63,12 @@ class WatcherAPI {
                     total = jsontotal
                 }
 
-                var entries = [NSXEntry]()
+                var entries = [Listing]()
                 if total > 0, let carsHtml = json["cars_html"] as? String {
-                    let dicts = HTMLNodeParser.dictionaries(from: carsHtml)
+                    let dicts = JasParser.dictionaries(from: carsHtml)
 
                     for dictionary in dicts {
-                        if let entry = NSXEntry(with: dictionary) {
+                        if let entry = Listing(with: dictionary) {
                             entries.append(entry)
                         }
                     }

@@ -1,5 +1,5 @@
 //
-//  NSXEntryModelTests.swift
+//  ListingModelTests.swift
 //  nsx-watcherTests
 //
 //  Created by Sai Tat Lam on 13/2/19.
@@ -9,7 +9,7 @@
 import XCTest
 
 
-class NSXEntryModelTests: XCTestCase {
+class ListingModelTests: XCTestCase {
 
     override func setUp() {
         
@@ -25,12 +25,12 @@ class NSXEntryModelTests: XCTestCase {
         let json = try! JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as! [AnyHashable: Any]
         
         let carsHtml = json["cars_html"] as! String
-        let dicts = HTMLNodeParser.dictionaries(from: carsHtml)
+        let dicts = JasParser.dictionaries(from: carsHtml)
         
         XCTAssertTrue(dicts.count == 1)
         
         let dictionary = dicts.first!
-        let entry = NSXEntry(with: dictionary)
+        let entry = Listing(with: dictionary)
         
         XCTAssertNotNil(entry)
     }
